@@ -25,7 +25,6 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
 		sun = new Sun(50,50);
 		grass = new Grass(100,100);
 		sunArray = new Array<Sun>();
@@ -68,7 +67,6 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 
 		for (int p = 0; p < numSuns;p++) {
 			sunArray.get(p).dispose();

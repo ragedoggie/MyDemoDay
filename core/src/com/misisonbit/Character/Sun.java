@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 import com.misisonbit.Sprites.Animations;
 
 
@@ -16,6 +17,7 @@ public class Sun {
     Rectangle bounds;
     Animations sunAnim;
     Texture texture;
+
     //Sound ray;
 
 
@@ -26,12 +28,14 @@ public class Sun {
         texture = new Texture("Sun.png");
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
         sunAnim = new Animations(new TextureRegion(texture), 2, 0.5f,2,1);
+
         //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
 
     }
 
     public void update(float dt){
         sunAnim.update(dt);
+
 
         }
 

@@ -1,6 +1,6 @@
 package com.misisonbit;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,10 +8,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.misisonbit.Character.Grass;
 import com.misisonbit.Character.Sun;
+import com.misisonbit.states.MenuState;
 
 import java.util.Random;
 
-public class MyGdxGame extends ApplicationAdapter {
+public class MyGdxGame extends Game {
 	SpriteBatch batch;
 	Texture img;
 	Sun sun;
@@ -19,7 +20,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	int numSuns;
 	Array<Grass> grassArray;
 	Grass grass;
-
+	public static int width = 800;
+	public static int height = 480;
 
 	
 	@Override
@@ -40,6 +42,8 @@ public class MyGdxGame extends ApplicationAdapter {
 			sunArray.add(new Sun(rng.nextInt(Gdx.graphics.getWidth()),rng.nextInt(Gdx.graphics.getHeight())));
 
 		}
+
+		setScreen(new MenuState(this));
 
 	}
 

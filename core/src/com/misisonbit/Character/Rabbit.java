@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.misisonbit.Character.Organisms;
+import com.misisonbit.MyGdxGame;
 import com.misisonbit.Sprites.Animations;
 
     public class Rabbit extends Organisms {
@@ -20,7 +21,6 @@ import com.misisonbit.Sprites.Animations;
 
 
     public Rabbit(int x, int y){
-
         position = new Vector3(x, y, 0);
         texture = new Texture("Rabbit.png");
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);

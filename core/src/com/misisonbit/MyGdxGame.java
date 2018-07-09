@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.misisonbit.Character.Grass;
+import com.misisonbit.Character.Grasshopper;
+import com.misisonbit.Character.Man;
+import com.misisonbit.Character.Rabbit;
 import com.misisonbit.Character.Sun;
 
 import java.util.Random;
@@ -19,6 +22,9 @@ public class MyGdxGame extends ApplicationAdapter {
 	int numSuns;
 	Array<Grass> grassArray;
 	Grass grass;
+	Grasshopper grasshopper;
+	Rabbit rabbit;
+	Man man;
 
 
 	
@@ -27,8 +33,11 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		sun = new Sun(50,50);
 		grass = new Grass(100,100);
+		grasshopper = new Grasshopper(200,200);
 		sunArray = new Array<Sun>();
 		grassArray = new Array<Grass>();
+		rabbit = new Rabbit(300,300);
+		man = new Man(0,250);
 
 		numSuns = 10;
 
@@ -51,6 +60,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		sun.update(Gdx.graphics.getDeltaTime());
 		grass.update(Gdx.graphics.getDeltaTime());
+		rabbit.update(Gdx.graphics.getDeltaTime());
+		grasshopper.update(Gdx.graphics.getDeltaTime());
+		man.update(Gdx.graphics.getDeltaTime());
 
 		for (int i = 0; i < numSuns; i++) {
 			sunArray.get(i).update(Gdx.graphics.getDeltaTime());
@@ -58,7 +70,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		batch.begin();
 		batch.draw(grass.getTexture(),100,100);
+		batch.draw(grasshopper.getTexture(),100,100);
 		batch.draw(sun.getTexture(),50,50);
+		batch.draw(rabbit.getTexture(),300,300);
+		batch.draw(man.getTexture(),0,250);
 		//batch.draw(img, 0, 0);
 		batch.end();
 

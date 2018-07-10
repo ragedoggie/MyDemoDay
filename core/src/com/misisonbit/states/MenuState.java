@@ -12,6 +12,7 @@ public class MenuState extends State {
     private Texture screen;
     Grass grass;
 
+
     public MenuState(MyGdxGame game) {
         super(game);
         //screen = new Texture("fish.jpg");
@@ -22,16 +23,25 @@ public class MenuState extends State {
     public void drawGame() {
         batch.begin();
         font.draw(batch,this.getClass().toString(),100,100);
+
         batch.end();
     }
 
     public void update(float dt) {
-        grass.update(dt);
-        //game.setScreen(new GameState(game));
+        handleInput();
+        //grass.update(dt);
+
 //        Gdx.gl.glClearColor(1,0,1,1);
 
     }
 
+    private void handleInput(){
+        if(Gdx.input.justTouched()){
+            dispose();
+            game.setScreen(new GameState(game));
+            }
+
+    }
 
 }
 

@@ -12,11 +12,13 @@ public class GameState extends State {
     }
 
     public void drawGame() {
-
+        batch.begin();
+        font.draw(batch,this.getClass().toString(),100,100);
+        batch.end();
     }
 
     public void update(float dt) {
 
     }
-    
+
 }

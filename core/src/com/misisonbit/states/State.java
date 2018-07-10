@@ -1,7 +1,9 @@
 package com.misisonbit.states;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.misisonbit.MyGdxGame;
 
@@ -10,12 +12,16 @@ public abstract class State implements Screen{
     public OrthographicCamera camera;
     SpriteBatch batch;
 
+    BitmapFont font;
+
     State(MyGdxGame game){
         //game declared on top = game that this method take in
         this.game = game;
         camera = new OrthographicCamera();
         batch = new SpriteBatch();
         camera.setToOrtho(false, MyGdxGame.width,MyGdxGame.height );
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
 
     }
 
@@ -30,7 +36,10 @@ public abstract class State implements Screen{
 
     @Override
     public void render(float delta) {
-
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
+        update(delta);
+        drawGame();
     }
 
     @Override
@@ -55,6 +64,6 @@ public abstract class State implements Screen{
 
     @Override
     public void dispose() {
-
+    font.dispose();
     }
 }

@@ -35,12 +35,13 @@ public class MenuState extends State {
 
     }
 
-    private void handleInput(){
+    public boolean handleInput(){
         if(Gdx.input.justTouched()){
             dispose();
             game.setScreen(new GameState(game));
+            return true;
             }
-
+            return false;
     }
 
 }

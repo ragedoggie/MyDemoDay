@@ -24,7 +24,7 @@ public class MyGdxGame extends Game {
 	public static int height = 480;
 
 
-
+	
 	@Override
 	public void create () {
 		//batch = new SpriteBatch();

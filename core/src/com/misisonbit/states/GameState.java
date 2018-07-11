@@ -13,7 +13,7 @@ public class GameState extends State {
 
     public void drawGame() {
         batch.begin();
-        font.draw(batch,this.getClass().toString(),100,100);
+        font.draw(batch,this.getClass().toString(),0,10);
         batch.end();
     }
 

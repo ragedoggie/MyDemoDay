@@ -28,9 +28,9 @@ public class Organisms {
 
 
     public void update(float dt) {
-        if (MyGdxGame.isUpPressed()) {
-            position.add(0, velocity.y);
-        }
+//        if (MyGdxGame.isUpPressed()) {
+//            position.add(0, velocity.y);
+//        }
     }
 
 }

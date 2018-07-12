@@ -14,6 +14,7 @@ public class GameState extends State {
     public void drawGame() {
         batch.begin();
         font.draw(batch,this.getClass().toString(),0,10);
+        //font.draw(batch,"GAME",Gdx,10);
         batch.end();
     }
 

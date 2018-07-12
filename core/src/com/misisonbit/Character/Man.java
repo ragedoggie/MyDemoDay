@@ -28,7 +28,7 @@ public class Man extends Organisms {
 
         position = new Vector3(x, y, 0);
         texture = new Texture("Man.png");
-         master
+
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
         manAnim = new Animations(new TextureRegion(texture), 3, 0.5f,3,3);
 

@@ -1,5 +1,6 @@
-package utils;
+package com.misisonbit.utils;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -8,57 +9,44 @@ import com.misisonbit.Character.Organisms;
 
 import java.awt.Rectangle;
 
-import static java.awt.Event.DOWN;
-import static java.awt.Event.UP;
-import static javax.swing.JSplitPane.LEFT;
-import static javax.swing.JSplitPane.RIGHT;
+
 
 
 public class Controller implements InputProcessor{
     private OrthographicCamera camera; // We need this to unproject our coordinates
     private Array<Image> buttons;
     private Rectangle leftHitbox,rightHitbox;
-    private boolean leftPressed, rightPressed, jumpPressed, jumpPressed, attackPressed;
-
-
-    class TouchInfo {
-        public float touchX = 0;
-        public float touchY = 0;
-        public boolean touched = false;
-    }
-
-
-    /*     if ( == ) {
-        if ( == UP) {
-            this.y = this.y - this.ySpeed;
-        }
-        if ( == DOWN) {
-            this.y = this.y + this.ySpeed;
-        }
-        if ( == LEFT) {
-            this.x = this.x - this.xSpeed;
-        }
-        if ( == RIGHT) {
-            this.x = this.x + this.xSpeed;
-        }
-    }
-}
-*/
+    private boolean leftPressed, rightPressed, upPressed, downPressed;
 
 
 
     @Override
     public boolean keyDown(int keycode) {
         if(keycode == 83) {
-            Organisms.y = Organisms.y - Organisms.ySpeed;
-            return true;
+            downPressed = true;
         }
-        return false;
+        return true;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        return false;
+        if(keycode == Input.Keys.W) {
+            upPressed = true;
+        }
+        return true;
+    }
+
+    public boolean keyRight(int keycode) {
+        if(keycode == Input.Keys.D) {
+            rightPressed = true;
+        }
+        return true;
+    }
+    public boolean keyLeft(int keycode) {
+        if(keycode == Input.Keys.A) {
+            leftPressed = true;
+        }
+        return true;
     }
 
     @Override
@@ -90,4 +78,21 @@ public class Controller implements InputProcessor{
     public boolean scrolled(int amount) {
         return false;
     }
+
+    public boolean isLeftPressed() { return leftPressed;
+    }
+
+    public boolean isRightPressed() {
+        return rightPressed;
+    }
+
+    public boolean isUpPressed() {
+        return upPressed;
+    }
+
+    public boolean isDownPressed() {
+        return downPressed;
+    }
 }
+
+

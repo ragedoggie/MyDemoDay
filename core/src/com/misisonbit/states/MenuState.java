@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.misisonbit.Character.Grass;
 import com.misisonbit.MyGdxGame;
 
+import javax.xml.soap.Text;
+
 public class MenuState extends State {
     private Texture screen;
     Grass grass;
@@ -22,7 +24,9 @@ public class MenuState extends State {
 
     public void drawGame() {
         batch.begin();
-        font.draw(batch,this.getClass().toString(),100,100);
+        //font.draw(batch,this.getClass().toString(),100,100);
+        font.getData().setScale(5,5);
+        font.draw(batch,"Tap to start",Gdx.graphics.getWidth()/3,Gdx.graphics.getBackBufferHeight()/3);
 
         batch.end();
     }

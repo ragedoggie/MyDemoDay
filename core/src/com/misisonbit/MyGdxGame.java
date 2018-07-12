@@ -62,7 +62,7 @@ public class MyGdxGame extends Game {
         return rightPressed;
     }
 }
-	}
+
 
 
 

@@ -1,12 +1,15 @@
 package com.misisonbit.Character;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.misisonbit.MyGdxGame;
 import com.misisonbit.Sprites.Animations;
+
+import static com.badlogic.gdx.scenes.scene2d.InputEvent.Type.keyDown;
 
 public class Grass extends Organisms {
 
@@ -16,7 +19,7 @@ public class Grass extends Organisms {
     Rectangle bounds;
     Animations grassAnim;
     Texture sprite;
-
+    private static boolean upPressed, downPressed, leftPressed, rightPressed = false;
 
     //Sound ray;
 
@@ -31,9 +34,22 @@ public class Grass extends Organisms {
 
     }
 
-
+    public boolean keyDown(int keycode) {
+        if(keycode == Input.Keys.UP){
+            upPressed = true;
+        }
+        return true;
+    }
+    public boolean keyUp(int keycode) {
+        if(keycode == Input.Keys.UP){
+            upPressed = false;
+        }
+        return true;
+    }
     public void update(float dt){
         grassAnim.update(dt);
+        //this.keyDown();
+
 
     }
 

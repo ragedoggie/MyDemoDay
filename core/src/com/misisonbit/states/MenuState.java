@@ -23,13 +23,13 @@ public class MenuState extends State {
     public void drawGame() {
         batch.begin();
         font.draw(batch,this.getClass().toString(),100,100);
-
+        font.getData().setScale(2,2);
+        font.draw(batch,"Menustate",Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         batch.end();
     }
 
     public void update(float dt) {
         handleInput();
-        //grass.update(dt);
 
 //        Gdx.gl.glClearColor(1,0,1,1);
 
@@ -39,6 +39,7 @@ public class MenuState extends State {
         if(Gdx.input.justTouched()){
             dispose();
             game.setScreen(new GameState(game));
+
             }
 
     }

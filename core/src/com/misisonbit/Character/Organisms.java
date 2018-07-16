@@ -20,17 +20,24 @@ public class Organisms {
 
     public Organisms() {
         position = new Vector2(0, 0);
-        velocity = new Vector2(10,10);
-
+        velocity = new Vector2(10, 10);
 
     }
-
 
 
     public void update(float dt) {
-//        if (MyGdxGame.isUpPressed()) {
-//            position.add(0, velocity.y);
+     //   if (MyGdxGame.isUpPressed()) {
+     //       position.add(0, velocity.y);
 //        }
+       // }
+      }
+
+    public Vector2 getPosition() {
+        return position;
     }
 
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
 }
+

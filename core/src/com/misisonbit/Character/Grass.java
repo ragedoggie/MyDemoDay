@@ -34,6 +34,8 @@ public class Grass extends Organisms {
 
     }
 
+    /*
+
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.UP){
             upPressed = true;
@@ -46,6 +48,9 @@ public class Grass extends Organisms {
         }
         return true;
     }
+
+    */
+
     public void update(float dt){
         grassAnim.update(dt);
         //this.keyDown();
@@ -55,9 +60,8 @@ public class Grass extends Organisms {
 
 
 
-    public Vector3 getPosition() {
-        return position;
-    }
+
+
 
     public TextureRegion getTexture() {
         return grassAnim.getFrame();

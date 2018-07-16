@@ -3,6 +3,7 @@ package com.misisonbit.Character;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.misisonbit.Character.Organisms;
 import com.misisonbit.MyGdxGame;
@@ -34,11 +35,6 @@ import com.misisonbit.Sprites.Animations;
         rabbitAnim.update(dt);
 
 
-    }
-
-
-    public Vector3 getPosition() {
-        return position;
     }
 
     public TextureRegion getTexture() {

@@ -1,4 +1,6 @@
+
 package com.misisonbit.utils;
+/*
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -15,7 +17,7 @@ import java.awt.Rectangle;
 public class Controller implements InputProcessor{
     private OrthographicCamera camera; // We need this to unproject our coordinates
     private Array<Image> buttons;
-    private Rectangle leftHitbox,rightHitbox;
+    //private Rectangle leftHitbox,rightHitbox;
     private boolean leftPressed, rightPressed, upPressed, downPressed;
 
 
@@ -95,4 +97,71 @@ public class Controller implements InputProcessor{
     }
 }
 
+*/
 
+
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad.TouchpadStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.misisonbit.Character.Organisms;
+
+/**
+ * Created by Kat on 7/10/16.
+ */
+public class Controller {
+    public Touchpad touchpad;
+    private TouchpadStyle touchpadStyle;
+    private Skin touchpadSkin;
+    private Drawable touchBackground;
+    private Drawable touchKnob;
+
+    private Stage stage;
+    private float spriteSpeed;
+
+    public Controller() {
+        //Create a touchpad skin
+        touchpadSkin = new Skin();
+        //Set background image
+        touchpadSkin.add("touchBackground", new Texture("touchBackground.png"));
+        //Set knob image
+        touchpadSkin.add("touchKnob", new Texture("touchKnob.png"));
+
+        //Create TouchPad Style
+        touchpadStyle = new TouchpadStyle();
+        //Create Drawable's from TouchPad skin
+        touchBackground = touchpadSkin.getDrawable("touchBackground");
+        touchKnob = touchpadSkin.getDrawable("touchKnob");
+        //Apply the Drawables to the TouchPad Style
+        touchpadStyle.background = touchBackground;
+        touchpadStyle.knob = touchKnob;
+
+        //Create new TouchPad with the created style
+        touchpad = new Touchpad(10, touchpadStyle);
+        //setBounds(x,y,width,height)
+        touchpad.setBounds(50, 50, 130, 130);
+
+        // Create stage and add touchpad
+        stage = new Stage();
+        stage.addActor(touchpad);
+        Gdx.input.setInputProcessor(stage);
+
+        // Set speed of sprite movement
+        spriteSpeed = 5;
+    }
+
+    // update sprite position based on joystick movement
+    public void update(Organisms organisms) {
+        organisms.setPosition(new Vector2(organisms.getPosition().x + touchpad.getKnobPercentX()*spriteSpeed, organisms.getPosition().y + touchpad.getKnobPercentY()*spriteSpeed));
+    }
+
+    public void draw() {
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
+    }
+}

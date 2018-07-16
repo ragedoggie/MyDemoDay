@@ -43,9 +43,6 @@ public class Man extends Organisms {
     }
 
 
-    public Vector3 getPosition() {
-        return position;
-    }
 
     public TextureRegion getTexture() {
         return manAnim.getFrame();

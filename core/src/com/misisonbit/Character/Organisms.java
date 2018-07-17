@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.misisonbit.MyGdxGame;
 
-public abstract class Organisms {
+public class Organisms {
     int speed;
     int health;
     int points;
@@ -19,7 +19,6 @@ public abstract class Organisms {
 
 
     public Organisms() {
-        position = new Vector2(0, 0);
         velocity = new Vector2(10, 10);
 
     }

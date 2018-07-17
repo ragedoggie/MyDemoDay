@@ -40,8 +40,7 @@ public class Sun {
     }
 
     public void update(float dt){
-        //sunAnim.update(dt);
-        //move();
+        sunAnim.update(dt);
 
 
 

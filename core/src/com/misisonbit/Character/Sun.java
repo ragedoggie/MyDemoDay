@@ -8,18 +8,20 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.misisonbit.Sprites.Animations;
 
+import java.util.Random;
+
 
 public class Sun {
 
     static final int GRAVITY = 0;
-    static final int MOVEMENT = 100;
+    static final int MOVEMENT = 500;
     Vector3 position;
     Rectangle bounds;
     Animations sunAnim;
     Texture texture;
+    Vector3 velocity;
 
     //Sound ray;
-
 
 
     public Sun(int x, int y){
@@ -29,12 +31,18 @@ public class Sun {
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
         sunAnim = new Animations(new TextureRegion(texture), 2, 0.5f,2,1);
 
+        velocity = new Vector3(MOVEMENT,0,0);
         //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
+
+        //V3 = new Array<Vector3>();
+
 
     }
 
     public void update(float dt){
-        sunAnim.update(dt);
+        //sunAnim.update(dt);
+        //move();
+
 
 
         }
@@ -48,7 +56,10 @@ public class Sun {
         return sunAnim.getFrame();
     }
 
+    public void move(){
 
+
+    }
 
     public Rectangle getBounds() {
         return bounds;
@@ -56,7 +67,6 @@ public class Sun {
 
     public void dispose() {
         texture.dispose();
-        //flap.dispose();
     }
 }
 

@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.misisonbit.MyGdxGame;
 
-public class Organisms {
+public abstract class Organisms {
     int speed;
     int health;
     int points;

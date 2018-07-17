@@ -75,7 +75,6 @@ public class Grass extends Organisms {
 
     public void dispose() {
         sprite.dispose();
-        //flap.dispose();
     }
 }
 

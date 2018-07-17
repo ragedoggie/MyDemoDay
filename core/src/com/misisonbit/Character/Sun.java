@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.misisonbit.Sprites.Animations;
 
 
-public class Sun {
+public class Sun extends Organisms {
 
     static final int GRAVITY = 0;
     static final int MOVEMENT = 100;
@@ -22,8 +22,8 @@ public class Sun {
 
 
 
-    public Sun(int x, int y){
-
+    public Sun(float x, float y){
+        super(x,y);
         position = new Vector3(x, y, 0);
         texture = new Texture("Sun.png");
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
@@ -40,9 +40,9 @@ public class Sun {
         }
 
 
-    public Vector3 getPosition() {
-        return position;
-    }
+    //public Vector3 getPosition() {
+  //      return position;
+   // }
 
     public TextureRegion getTexture() {
         return sunAnim.getFrame();

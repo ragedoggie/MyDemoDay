@@ -16,18 +16,19 @@ public class GameState extends State {
 
     public GameState(MyGdxGame game) {
         super(game);
-        grass = new Grass(100,100);
+        grass = new Grass(300,100);
         controller = new Controller();
-        organisms = new Organisms();
+        organisms = new Organisms(0f,0f);
 
     }
 
     public void drawGame() {
         batch.begin();
         font.draw(batch,this.getClass().toString(),0,10);
-        batch.draw(grass.getTexture(),100,100);
-        controller.draw();
+        batch.draw(grass.getTexture(),300,100);
         batch.end();
+        controller.draw();
+
     }
 
     public void update(float dt) {

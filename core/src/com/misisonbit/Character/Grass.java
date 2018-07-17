@@ -19,12 +19,13 @@ public class Grass extends Organisms {
     Rectangle bounds;
     Animations grassAnim;
     Texture sprite;
-    private static boolean upPressed, downPressed, leftPressed, rightPressed = false;
+    //private static boolean upPressed, downPressed, leftPressed, rightPressed = false;
 
     //Sound ray;
 
 
-    public Grass(int x, int y){
+    public Grass(float x, float y){
+        super(x,y);
         position = new Vector3(x, y, 0);
         sprite = new Texture("Grass.png");
         bounds = new Rectangle(x, y, sprite.getWidth() / 3, sprite.getHeight() / 3);

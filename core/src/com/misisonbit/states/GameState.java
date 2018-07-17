@@ -18,39 +18,51 @@ public class GameState extends State {
     int ranInty;
     Array<Integer> ranNumx;
     Array<Integer> ranNumY;
+
     int numSun;
 
 
     public GameState(MyGdxGame game) {
         super(game);
-        sun = new Sun(100 , 100);
-        numSun = 30;
+        //sun = new Sun(sun.getPosition().x,sun.getPosition().y);
+        numSun = 10;
+        sun = new Sun(30,30);
 
         ranNumx = new Array<Integer>();
         ranNumY = new Array<Integer>();
 
         random = new Random();
 
-        for(int i = 0;i<numSun;i++){
-            ranNumx.add(ranIntx = random.nextInt(Gdx.graphics.getWidth()));
-            ranNumY.add(ranIntx = random.nextInt(Gdx.graphics.getHeight()));
-        }
+
+
 
     }
 
     public void drawGame() {
         batch.begin();
         font.draw(batch,this.getClass().toString(),0,10);
+        batch.draw(sun.getTexture(),sun.getPosition().x,sun.getPosition().y);
 
-        for(int i = 0;i<numSun;i++) {
-            batch.draw(sun.getTexture(),ranNumx.get(i),ranNumY.get(i));
-        }
 
         batch.end();
     }
 
     public void update(float dt) {
         sun.update(Gdx.graphics.getDeltaTime());
+        clickHandler();
     }
 
-}
+
+    public void clickHandler(){
+        if(Gdx.input.justTouched()){
+            if(sun.getPosition().x>Gdx.graphics.getWidth()){
+               sun.getPosition().x=0;
+            }else
+            sun.getPosition().x+=100;
+        }
+
+        }
+
+    }
+
+

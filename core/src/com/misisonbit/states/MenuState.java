@@ -6,19 +6,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.misisonbit.Character.Grass;
+import com.misisonbit.Character.Sun;
 import com.misisonbit.MyGdxGame;
 
 import javax.xml.soap.Text;
 
 public class MenuState extends State {
     private Texture screen;
-    Grass grass;
 
 
     public MenuState(MyGdxGame game) {
         super(game);
         //screen = new Texture("fish.jpg");
-        grass = new Grass(10, 10);
+
 
     }
 

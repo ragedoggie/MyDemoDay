@@ -36,9 +36,6 @@ public class Grasshopper {
     }
 
 
-    public Vector3 getPosition() {
-        return position;
-    }
 
     public TextureRegion getTexture() {
         return grasshopperAnim.getFrame();

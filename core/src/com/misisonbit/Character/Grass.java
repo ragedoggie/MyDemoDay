@@ -19,10 +19,7 @@ public class Grass extends Organisms {
     Rectangle bounds;
     Animations grassAnim;
     Texture sprite;
-    //private static boolean upPressed, downPressed, leftPressed, rightPressed = false;
-
-    //Sound ray;
-
+    private static boolean upPressed, downPressed, leftPressed, rightPressed = false;
 
     public Grass(float x, float y){
         super(x,y);
@@ -30,13 +27,8 @@ public class Grass extends Organisms {
         sprite = new Texture("grass2.png");
         grassAnim = new Animations(new TextureRegion(sprite), 3, 0.8f,2,2);
         bounds = new Rectangle(x, y, grassAnim.getFrame().getRegionWidth(), grassAnim.getFrame().getRegionHeight());
-
-        //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
-
     }
-
-    /*
-
+    
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.UP){
             upPressed = true;
@@ -50,27 +42,14 @@ public class Grass extends Organisms {
         return true;
     }
 
-    */
-
     public void update(float dt){
         super.update(dt);
         grassAnim.update(dt);
-        //this.keyDown();
-
-
-
     }
-
-
-
-
-
 
     public TextureRegion getTexture() {
         return grassAnim.getFrame();
     }
-
-
 
     public Rectangle getBounds() {
         return bounds;
@@ -78,7 +57,5 @@ public class Grass extends Organisms {
 
     public void dispose() {
         sprite.dispose();
-        //flap.dispose();
     }
 }
-

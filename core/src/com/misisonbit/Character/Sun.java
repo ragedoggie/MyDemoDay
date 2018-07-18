@@ -28,7 +28,6 @@ public class Sun extends Organisms {
         texture = new Texture("Sun.png");
         sunAnim = new Animations(new TextureRegion(texture), 2, 0.5f,2,1);
         bounds = new Rectangle(x, y, sunAnim.getFrame().getRegionWidth(), sunAnim.getFrame().getRegionHeight());
-
         //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
 
     }

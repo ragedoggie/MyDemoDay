@@ -21,7 +21,8 @@ import com.misisonbit.Sprites.Animations;
 
 
 
-    public Rabbit(int x, int y){
+    public Rabbit(float x, float y){
+        super(x,y);
         position = new Vector3(x, y, 0);
         texture = new Texture("Rabbit.png");
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);

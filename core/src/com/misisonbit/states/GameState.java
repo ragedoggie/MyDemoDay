@@ -26,7 +26,7 @@ public class GameState extends State {
         sun = new Sun(310,100);
 
         controller = new Controller();
-        organisms = new Organisms();
+        organisms = new Organisms(0f,0f);
 
         shapeRenderer = new ShapeRenderer();
 
@@ -52,10 +52,9 @@ public class GameState extends State {
 
     public void update(float dt) {
         grass.update(Gdx.graphics.getDeltaTime());
-        controller.update(organisms);
+        controller.update(grass);
         sun.update(Gdx.graphics.getDeltaTime());
         collide();
-
 
     }
 

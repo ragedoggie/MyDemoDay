@@ -1,6 +1,7 @@
 package com.misisonbit.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.misisonbit.Character.Grass;
 import com.misisonbit.Character.Grasshopper;
@@ -9,6 +10,8 @@ import com.misisonbit.Character.Rabbit;
 import com.misisonbit.Character.Sun;
 import com.misisonbit.MyGdxGame;
 import com.misisonbit.utils.Controller;
+
+import java.awt.Rectangle;
 
 public class GameState extends State {
     Grass grass;
@@ -23,11 +26,11 @@ public class GameState extends State {
     public GameState(MyGdxGame game) {
         super(game);
         grass = new Grass(300,100);
-        sun = new Sun(350,100);
-        grasshopper = new Grasshopper(250, 200);
-        rabbit = new Rabbit(350, 200);
+        sun = new Sun(310,100);
+
         controller = new Controller();
-        organisms = new Organisms();
+        organisms = new Organisms(0f,0f);
+
         shapeRenderer = new ShapeRenderer();
     }
 
@@ -37,8 +40,6 @@ public class GameState extends State {
         font.draw(batch,this.getClass().toString(),0,10);
         batch.draw(grass.getTexture(), grass.getPosition().x, grass.getPosition().y);
         batch.draw(sun.getTexture(),sun.getPosition().x,sun.getPosition().y);
-        batch.draw(grasshopper.getTexture(), grasshopper.getPosition().x, grasshopper.getPosition().y);
-        batch.draw(rabbit.getTexture(),rabbit.getPosition().x,rabbit.getPosition().y);
         batch.end();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -51,16 +52,27 @@ public class GameState extends State {
 
     public void update(float dt) {
         grass.update(Gdx.graphics.getDeltaTime());
-        controller.update(organisms);
+        controller.update(grass);
         sun.update(Gdx.graphics.getDeltaTime());
         collide();
+
+
     }
 
     public void collide(){
+        if(grass.getBounds().overlaps(sun.getBounds())){
+            System.out.println("ahahahhahahahahah");
+        }
+
+        sun.getBounds().setPosition(sun.getPosition().x,sun.getPosition().y);
+        grass.getBounds().setPosition(grass.getPosition().x,grass.getPosition().y);
+
+
     }
 
     public void dispose() {
         batch.dispose();
         shapeRenderer.dispose();
     }
+
 }

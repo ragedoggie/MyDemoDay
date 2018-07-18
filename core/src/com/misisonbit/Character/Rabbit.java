@@ -17,11 +17,16 @@ import com.misisonbit.Sprites.Animations;
         Animations rabbitAnim;
         Texture texture;
 
-    public Rabbit(int x, int y){
+    //Sound ray;
+
+
+
+    public Rabbit(float x, float y){
+        super(x,y);
         position = new Vector3(x, y, 0);
         texture = new Texture("Rabbit.png");
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
-        rabbitAnim = new Animations(new TextureRegion(texture), 4, 0.5f,2,2);
+        rabbitAnim = new Animations(new TextureRegion(texture), 2, .3f,2,2);
 
         //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
 
@@ -38,11 +43,14 @@ import com.misisonbit.Sprites.Animations;
         return rabbitAnim.getFrame();
     }
 
+
+
     public Rectangle getBounds() {
         return bounds;
     }
 
     public void dispose() {
         texture.dispose();
+        //flap.dispose();
     }
 }

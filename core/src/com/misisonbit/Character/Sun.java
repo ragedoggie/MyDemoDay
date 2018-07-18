@@ -8,34 +8,28 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.misisonbit.Sprites.Animations;
 
-import java.util.Random;
 
-
-public class Sun {
+public class Sun extends Organisms {
 
     static final int GRAVITY = 0;
-    static final int MOVEMENT = 500;
+    static final int MOVEMENT = 100;
     Vector3 position;
     Rectangle bounds;
     Animations sunAnim;
     Texture texture;
-    Vector3 velocity;
 
     //Sound ray;
 
 
-    public Sun(int x, int y){
 
+    public Sun(float x, float y){
+        super(x,y);
         position = new Vector3(x, y, 0);
         texture = new Texture("Sun.png");
-        bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
         sunAnim = new Animations(new TextureRegion(texture), 2, 0.5f,2,1);
+        bounds = new Rectangle(x, y, sunAnim.getFrame().getRegionWidth(), sunAnim.getFrame().getRegionHeight());
 
-        velocity = new Vector3(MOVEMENT,0,0);
         //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
-
-        //V3 = new Array<Vector3>();
-
 
     }
 
@@ -43,22 +37,18 @@ public class Sun {
         sunAnim.update(dt);
 
 
-
         }
 
 
-    public Vector3 getPosition() {
-        return position;
-    }
+    //public Vector3 getPosition() {
+  //      return position;
+   // }
 
     public TextureRegion getTexture() {
         return sunAnim.getFrame();
     }
 
-    public void move(){
 
-
-    }
 
     public Rectangle getBounds() {
         return bounds;
@@ -66,6 +56,7 @@ public class Sun {
 
     public void dispose() {
         texture.dispose();
+        //flap.dispose();
     }
 }
 

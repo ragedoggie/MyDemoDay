@@ -104,7 +104,6 @@ public class Controller implements InputProcessor{
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
@@ -158,7 +157,7 @@ public class Controller {
 
     // update sprite position based on joystick movement
     public void update(Organisms organisms) {
-        organisms.setPosition(new Vector2(organisms.getPosition().x + touchpad.getKnobPercentX()*spriteSpeed, organisms.getPosition().y + touchpad.getKnobPercentY()*spriteSpeed));
+      organisms.setVelocity(touchpad.getKnobPercentX()*10,touchpad.getKnobPercentY()*10);
     }
 
     public void draw() {

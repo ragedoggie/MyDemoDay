@@ -3,7 +3,6 @@ package com.misisonbit.Character;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.misisonbit.MyGdxGame;
 
 public class Organisms {
@@ -12,25 +11,24 @@ public class Organisms {
     int points;
     //Gdx.input.setInputProcessor(inputProcessor);
     int moveSpeed;
-    int objWidth;
-    int objHeight;
     protected Vector2 position;
-    //protected Vector2 velocity;
-    public static boolean upPressed, downPressed, leftPressed, rightPressed = false;
+    protected Vector2 velocity;
+   // public static boolean upPressed, downPressed, leftPressed, rightPressed = false;
 
 
-
-    public Organisms(float x, float y) {
-
-        position = new Vector2(x,y);
-
-        //velocity = new Vector2(10, 10);
+    public Organisms(float x,float y) {
+        velocity = new Vector2();
+        position = new Vector2(x, y);
 
     }
 
 
     public void update(float dt) {
-
+     //   if (MyGdxGame.isUpPressed()) {
+     //       position.add(0, velocity.y);
+//        }
+       // }
+        position.add(velocity);
       }
 
     public Vector2 getPosition() {
@@ -39,6 +37,10 @@ public class Organisms {
 
     public void setPosition(Vector2 position) {
         this.position = position;
+    }
+
+    public void setVelocity(float x, float y) {
+        velocity.set(x,y);
     }
 }
 

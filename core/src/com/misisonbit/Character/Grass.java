@@ -53,8 +53,10 @@ public class Grass extends Organisms {
     */
 
     public void update(float dt){
+        super.update(dt);
         grassAnim.update(dt);
         //this.keyDown();
+
 
 
     }

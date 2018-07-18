@@ -7,12 +7,19 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.misisonbit.MyGdxGame;
 
+import java.util.Random;
+
 public abstract class State implements Screen{
     final MyGdxGame game;
     public OrthographicCamera camera;
     SpriteBatch batch;
 
     BitmapFont font;
+
+    Random random;
+
+
+
 
     State(MyGdxGame game){
         //game declared on top = game that this method take in
@@ -23,6 +30,7 @@ public abstract class State implements Screen{
         font = new BitmapFont();
         font.setColor(Color.WHITE);
 
+        random = new Random();
     }
 
     abstract void update(float dt);
@@ -40,6 +48,7 @@ public abstract class State implements Screen{
         batch.setProjectionMatrix(camera.combined);
         update(delta);
         drawGame();
+
     }
 
     @Override

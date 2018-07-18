@@ -49,6 +49,5 @@ public class Grasshopper {
 
     public void dispose() {
         texture.dispose();
-        //flap.dispose();
     }
 }

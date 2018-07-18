@@ -11,15 +11,14 @@ public class Organisms {
     int points;
     //Gdx.input.setInputProcessor(inputProcessor);
     int moveSpeed;
-    int objWidth;
-    int objHeight;
     protected Vector2 position;
     protected Vector2 velocity;
-    public static boolean upPressed, downPressed, leftPressed, rightPressed = false;
+   // public static boolean upPressed, downPressed, leftPressed, rightPressed = false;
 
 
-    public Organisms() {
-        velocity = new Vector2(10, 10);
+    public Organisms(float x,float y) {
+        velocity = new Vector2();
+        position = new Vector2(x, y);
 
     }
 
@@ -29,6 +28,7 @@ public class Organisms {
      //       position.add(0, velocity.y);
 //        }
        // }
+        position.add(velocity);
       }
 
     public Vector2 getPosition() {
@@ -37,6 +37,10 @@ public class Organisms {
 
     public void setPosition(Vector2 position) {
         this.position = position;
+    }
+
+    public void setVelocity(float x, float y) {
+        velocity.set(x,y);
     }
 }
 

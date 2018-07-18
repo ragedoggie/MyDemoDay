@@ -23,7 +23,7 @@ public class GameState extends State {
     public GameState(MyGdxGame game) {
         super(game);
         grass = new Grass(300,100);
-        sun = new Sun(310,100);
+        sun = new Sun(350,100);
 
         controller = new Controller();
         organisms = new Organisms(0f,0f);
@@ -56,12 +56,17 @@ public class GameState extends State {
         sun.update(Gdx.graphics.getDeltaTime());
         collide();
 
+
+
     }
 
     public void collide(){
         if(grass.getBounds().overlaps(sun.getBounds())){
             System.out.println("ahahahhahahahahah");
         }
+
+        sun.getBounds().setPosition(sun.getPosition().x,sun.getPosition().y);
+        grass.getBounds().setPosition(grass.getPosition().x,grass.getPosition().y);
 
 
     }

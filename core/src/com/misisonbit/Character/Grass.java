@@ -1,20 +1,16 @@
 package com.misisonbit.Character;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.misisonbit.MyGdxGame;
 import com.misisonbit.Sprites.Animations;
 
 import static com.badlogic.gdx.scenes.scene2d.InputEvent.Type.keyDown;
 
 public class Grass extends Organisms {
 
-    static final int GRAVITY = 0;
-    static final int MOVEMENT = 100;
     Vector3 position;
     Rectangle bounds;
     Animations grassAnim;

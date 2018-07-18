@@ -28,9 +28,8 @@ public class Grass extends Organisms {
         super(x,y);
         position = new Vector3(x, y, 0);
         sprite = new Texture("Grass.png");
-        bounds = new Rectangle(x, y, sprite.getWidth() / 3, sprite.getHeight() / 3);
         grassAnim = new Animations(new TextureRegion(sprite), 10, 0.8f,10,1);
-
+        bounds = new Rectangle(x, y, grassAnim.getFrame().getRegionWidth(), grassAnim.getFrame().getRegionHeight());
         //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
 
     }

@@ -44,7 +44,7 @@ public class GameState extends State {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         //--------------shows hit box--------------
         shapeRenderer.rect(grass.getPosition().x,grass.getPosition().y,grass.getBounds().getWidth(),grass.getBounds().getHeight());
-        shapeRenderer.rect(sun.getPosition().x,sun.getPosition().y,grass.getBounds().getWidth(),grass.getBounds().getHeight());
+        shapeRenderer.rect(sun.getPosition().x,sun.getPosition().y,sun.getBounds().getWidth(),sun.getBounds().getHeight());
         //-----------------------------------------
         shapeRenderer.end();
         controller.draw();

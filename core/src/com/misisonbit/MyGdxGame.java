@@ -10,8 +10,8 @@ import com.misisonbit.states.MenuState;
 
 public class MyGdxGame extends Game {
 
-	public static int width = 800;
-	public static int height = 480;
+	public static int width = 960;
+	public static int height = 540;
 
 
 	

@@ -157,7 +157,7 @@ public class Controller {
 
     // update sprite position based on joystick movement
     public void update(Organisms organisms) {
-      organisms.setVelocity(touchpad.getKnobPercentX()*10,touchpad.getKnobPercentY()*10);
+      organisms.setVelocity(touchpad.getKnobPercentX()*2,touchpad.getKnobPercentY()*2);
     }
 
     public void draw() {

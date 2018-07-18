@@ -13,16 +13,10 @@ public abstract class State implements Screen{
     final MyGdxGame game;
     public OrthographicCamera camera;
     SpriteBatch batch;
-
     BitmapFont font;
-
     Random random;
 
-
-
-
     State(MyGdxGame game){
-        //game declared on top = game that this method take in
         this.game = game;
         camera = new OrthographicCamera();
         batch = new SpriteBatch();
@@ -36,42 +30,22 @@ public abstract class State implements Screen{
     abstract void update(float dt);
     abstract void drawGame();
 
-
-    @Override
     public void show() {
-
     }
-
-    @Override
     public void render(float delta) {
         camera.update();
         batch.setProjectionMatrix(camera.combined);
         update(delta);
         drawGame();
-
     }
-
-    @Override
     public void resize(int width, int height) {
-
     }
-
-    @Override
     public void pause() {
-
     }
-
-    @Override
     public void resume() {
-
     }
-
-    @Override
     public void hide() {
-
     }
-
-    @Override
     public void dispose() {
     font.dispose();
     }

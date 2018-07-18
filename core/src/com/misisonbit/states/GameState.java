@@ -23,7 +23,7 @@ public class GameState extends State {
     public GameState(MyGdxGame game) {
         super(game);
         grass = new Grass(300,100);
-        sun = new Sun(310,100);
+        sun = new Sun(350,100);
 
         controller = new Controller();
         organisms = new Organisms();

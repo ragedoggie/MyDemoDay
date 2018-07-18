@@ -28,8 +28,8 @@ public class Sun {
 
         position = new Vector3(x, y, 0);
         texture = new Texture("Sun.png");
-        bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
         sunAnim = new Animations(new TextureRegion(texture), 2, 0.5f,2,1);
+        bounds = new Rectangle(x, y, sunAnim.getFrame().getRegionWidth(), sunAnim.getFrame().getRegionHeight());
 
         velocity = new Vector3(MOVEMENT,0,0);
         //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));

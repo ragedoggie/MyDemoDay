@@ -8,7 +8,6 @@ public class Player {
         trophicLevel =  1 ;
         score = 0;
     }
-//player trophic level
     private void evo(){
         switch (score){
             case 100:
@@ -21,13 +20,6 @@ public class Player {
 
                 break;
             default:
-
-
         }
-
-
-
-
     }
-
 }

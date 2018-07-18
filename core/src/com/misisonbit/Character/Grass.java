@@ -25,7 +25,7 @@ public class Grass extends Organisms {
 
 
     public Grass(float x, float y){
-        position = new Vector2(x, y);
+        position = new Vector3(x, y, 0);
         sprite = new Texture("Grass2.png");
 
         grassAnim = new Animations(new TextureRegion(sprite), 3, 0.4f,2,2);
@@ -38,8 +38,6 @@ public class Grass extends Organisms {
 
     public void update(float dt){
         grassAnim.update(dt);
-
-
     }
 
 

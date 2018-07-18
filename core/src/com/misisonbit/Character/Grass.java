@@ -28,11 +28,12 @@ public class Grass extends Organisms {
         grassAnim = new Animations(new TextureRegion(sprite), 3, 0.8f,2,2);
         bounds = new Rectangle(x, y, grassAnim.getFrame().getRegionWidth(), grassAnim.getFrame().getRegionHeight());
     }
-    
+
     public boolean keyDown(int keycode) {
         if(keycode == Input.Keys.UP){
             upPressed = true;
         }
+
         return true;
     }
     public boolean keyUp(int keycode) {

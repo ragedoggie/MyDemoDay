@@ -3,14 +3,19 @@ package com.misisonbit.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Intersector;
 import com.misisonbit.Character.Grass;
+import com.misisonbit.Character.Grasshopper;
 import com.misisonbit.Character.Organisms;
 import com.misisonbit.Character.Sun;
 import com.misisonbit.Character.Tree;
 import com.misisonbit.MyGdxGame;
 import com.misisonbit.utils.Controller;
 
+import org.omg.PortableInterceptor.Interceptor;
+
 import java.awt.Rectangle;
+
 
 public class GameState extends State {
     Grass grass;
@@ -18,6 +23,7 @@ public class GameState extends State {
     Controller controller;
     Organisms organisms;
     Tree tree;
+    Grasshopper grasshopper;
 
     ShapeRenderer shapeRenderer;
 
@@ -27,6 +33,7 @@ public class GameState extends State {
         grass = new Grass(300,100);
         sun = new Sun(350,100);
         tree = new Tree(600,100);
+        grasshopper = new Grasshopper(500,50);
 
         controller = new Controller();
         organisms = new Organisms(0f,0f);
@@ -42,6 +49,7 @@ public class GameState extends State {
         batch.draw(grass.getTexture(), grass.getPosition().x, grass.getPosition().y);
         batch.draw(sun.getTexture(),sun.getPosition().x,sun.getPosition().y);
         batch.draw(tree.getTexture(),600,100);
+        batch.draw(grasshopper.getTexture(),500,50);
         batch.end();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -50,6 +58,8 @@ public class GameState extends State {
         shapeRenderer.rect(grass.getPosition().x,grass.getPosition().y,grass.getBounds().getWidth(),grass.getBounds().getHeight());
         shapeRenderer.rect(sun.getPosition().x,sun.getPosition().y,sun.getBounds().getWidth(),sun.getBounds().getHeight());
         shapeRenderer.rect(tree.getPosition().x,tree.getPosition().y,tree.getTexture().getRegionWidth(),tree.getTexture().getRegionHeight());
+        shapeRenderer.rect(grasshopper.getPosition().x,grasshopper.getPosition().y,grasshopper.getTexture().getRegionWidth(),grasshopper.getTexture().getRegionHeight());
+        shapeRenderer.circle(grasshopper.getPosition().x+grasshopper.getBounds().getWidth()/2,grasshopper.getPosition().y+grasshopper.getBounds().getHeight()/2,grasshopper.getRange().radius);
         //-----------------------------------------
         shapeRenderer.end();
         controller.draw();
@@ -60,6 +70,7 @@ public class GameState extends State {
         controller.update(grass);
         sun.update(Gdx.graphics.getDeltaTime());
         tree.update(Gdx.graphics.getDeltaTime());
+        grasshopper.update(Gdx.graphics.getDeltaTime());
         collide();
 
 
@@ -70,9 +81,23 @@ public class GameState extends State {
         if(grass.getBounds().overlaps(sun.getBounds())){
             System.out.println("rem best girl");
         }
-        if(grass.getBounds().overlaps(tree.getBounds())){
+        if(tree.getBounds().contains(grass.getBounds())){
             System.out.println("but i love emilia");
+        }else if (Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
+            System.out.println("remilia");
         }
+        if(grass.getBounds().overlaps(grasshopper.getBounds())){
+            System.out.println("who's rem");
+        }
+
+
+
+
+
+        /*if(Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
+            System.out.println("remilia");
+        }*/
+        //import Intersector library
 
 
         sun.getBounds().setPosition(sun.getPosition().x,sun.getPosition().y);

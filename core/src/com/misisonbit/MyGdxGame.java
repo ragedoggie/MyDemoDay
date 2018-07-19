@@ -18,7 +18,7 @@ public class MyGdxGame extends Game {
 	@Override
 	public void create () {
 
-		Gdx.gl.glClearColor(140/255f, 193/255f, 48/255f, 1);
+		Gdx.gl.glClearColor(114/255f, 175/255f, 56/255f, 1);
 		this.setScreen(new MenuState(this));
 
 	}

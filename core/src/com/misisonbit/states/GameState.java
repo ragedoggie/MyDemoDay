@@ -49,6 +49,7 @@ public class GameState extends State {
         //--------------shows hit box--------------
         shapeRenderer.rect(grass.getPosition().x,grass.getPosition().y,grass.getBounds().getWidth(),grass.getBounds().getHeight());
         shapeRenderer.rect(sun.getPosition().x,sun.getPosition().y,sun.getBounds().getWidth(),sun.getBounds().getHeight());
+        shapeRenderer.rect(tree.getPosition().x,tree.getPosition().y,tree.getTexture().getRegionWidth(),tree.getTexture().getRegionHeight());
         //-----------------------------------------
         shapeRenderer.end();
         controller.draw();
@@ -69,6 +70,10 @@ public class GameState extends State {
         if(grass.getBounds().overlaps(sun.getBounds())){
             System.out.println("rem best girl");
         }
+        if(grass.getBounds().overlaps(tree.getBounds())){
+            System.out.println("but i love emilia");
+        }
+
 
         sun.getBounds().setPosition(sun.getPosition().x,sun.getPosition().y);
         grass.getBounds().setPosition(grass.getPosition().x,grass.getPosition().y);

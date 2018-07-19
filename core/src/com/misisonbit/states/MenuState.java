@@ -1,6 +1,7 @@
 package com.misisonbit.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -18,6 +19,7 @@ public class MenuState extends State {
         screen = new Texture("fish.jpg");
         grass = new Grass(10, 10);
 
+
     }
 
     public void drawGame() {
@@ -25,6 +27,7 @@ public class MenuState extends State {
         batch.draw(screen,0,-30, Gdx.graphics.getWidth() + 200,Gdx.graphics.getHeight() + 30);
         font.draw(batch,this.getClass().toString(),100,100);
         font.getData().setScale(2,2);
+        font.setColor(Color.GOLDENROD);
         font.draw(batch,"Menustate",Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         batch.end();
     }

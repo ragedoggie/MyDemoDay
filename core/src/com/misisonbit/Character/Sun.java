@@ -17,6 +17,8 @@ public class Sun extends Organisms {
     Rectangle bounds;
     Animations sunAnim;
     Texture texture;
+    boolean alive = false;
+
 
     //Sound ray;
 
@@ -33,7 +35,7 @@ public class Sun extends Organisms {
     }
 
     public void update(float dt){
-        sunAnim.update(dt);
+            sunAnim.update(dt);
 
 
         }

@@ -12,37 +12,30 @@ import com.misisonbit.Sprites.Animations;
     public class Rabbit extends Organisms {
         static final int GRAVITY = 0;
         static final int MOVEMENT = 100;
-        Vector3 position;
+        Vector2 position;
         Rectangle bounds;
         Animations rabbitAnim;
         Texture texture;
 
-    //Sound ray;
-
-
-
     public Rabbit(float x, float y){
         super(x,y);
-        position = new Vector3(x, y, 0);
+        position = new Vector2(x, y);
         texture = new Texture("Rabbit.png");
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
         rabbitAnim = new Animations(new TextureRegion(texture), 2, .3f,2,2);
-
-        //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
-
     }
 
     public void update(float dt){
         rabbitAnim.update(dt);
+    }
 
-
+    public Vector2 getPosition(){
+        return position;
     }
 
     public TextureRegion getTexture() {
         return rabbitAnim.getFrame();
     }
-
-
 
     public Rectangle getBounds() {
         return bounds;
@@ -50,6 +43,5 @@ import com.misisonbit.Sprites.Animations;
 
     public void dispose() {
         texture.dispose();
-        //flap.dispose();
     }
 }

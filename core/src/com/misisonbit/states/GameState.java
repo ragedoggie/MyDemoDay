@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.misisonbit.Character.Grass;
 import com.misisonbit.Character.Grasshopper;
+import com.misisonbit.Character.House;
 import com.misisonbit.Character.Organisms;
 import com.misisonbit.Character.Sun;
 import com.misisonbit.Character.Tree;
@@ -25,6 +26,7 @@ public class GameState extends State {
     Organisms organisms;
     Tree tree;
     Grasshopper grasshopper;
+    House house;
 
     ShapeRenderer shapeRenderer;
 
@@ -35,6 +37,7 @@ public class GameState extends State {
         sun = new Sun(350,100);
         tree = new Tree(600,100);
         grasshopper = new Grasshopper(500,50);
+        house = new House(800,430);
 
         controller = new Controller();
         organisms = new Organisms(0f,0f);
@@ -55,6 +58,7 @@ public class GameState extends State {
         }
         batch.draw(tree.getTexture(),600,100);
         batch.draw(grasshopper.getTexture(),500,50);
+        batch.draw(house.getTexture(),800,430);
         batch.end();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -69,6 +73,7 @@ public class GameState extends State {
         shapeRenderer.rect(tree.getPosition().x,tree.getPosition().y,tree.getTexture().getRegionWidth(),tree.getTexture().getRegionHeight());
         shapeRenderer.rect(grasshopper.getPosition().x,grasshopper.getPosition().y,grasshopper.getTexture().getRegionWidth(),grasshopper.getTexture().getRegionHeight());
         shapeRenderer.circle(grasshopper.getPosition().x+grasshopper.getBounds().getWidth()/2,grasshopper.getPosition().y+grasshopper.getBounds().getHeight()/2,grasshopper.getRange().radius);
+        shapeRenderer.rect(house.getPosition().x,house.getPosition().y,house.getTexture().getRegionWidth(),house.getTexture().getRegionHeight());
         //-----------------------------------------
         shapeRenderer.end();
         controller.draw();
@@ -82,6 +87,7 @@ public class GameState extends State {
         }
         tree.update(Gdx.graphics.getDeltaTime());
         grasshopper.update(Gdx.graphics.getDeltaTime());
+        house.update(Gdx.graphics.getDeltaTime());
         collide();
 
 
@@ -89,7 +95,7 @@ public class GameState extends State {
     }
 
     public void collide(){
-        if(grass.getBounds().overlaps(sun.getBounds()) && sun.isAlive){
+        if(sun.getBounds().contains(grass.getBounds()) && sun.isAlive){
             musicDeath.play();
             sun.isAlive = false;
             System.out.println("rem best girl");
@@ -101,6 +107,9 @@ public class GameState extends State {
         }
         if(grass.getBounds().overlaps(grasshopper.getBounds())){
             System.out.println("who's rem");
+        }
+        if (grass.getBounds().overlaps(house.getBounds())){
+            System.out.println("testing house");
         }
 
 

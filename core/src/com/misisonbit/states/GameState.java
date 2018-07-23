@@ -96,7 +96,6 @@ public class GameState extends State {
         for(Sun s : sunArray) {
             shapeRenderer.rect(s.getBounds().x, s.getBounds().y, s.getBounds().getWidth(), s.getBounds().getHeight());
         }
-        shapeRenderer.rect(sun.getPosition().x,sun.getPosition().y,sun.getBounds().getWidth(),sun.getBounds().getHeight());
         shapeRenderer.rect(tree.getPosition().x,tree.getPosition().y,tree.getTexture().getRegionWidth(),tree.getTexture().getRegionHeight());
         shapeRenderer.rect(grasshopper.getPosition().x,grasshopper.getPosition().y,grasshopper.getTexture().getRegionWidth(),grasshopper.getTexture().getRegionHeight());
         shapeRenderer.circle(grasshopper.getPosition().x+grasshopper.getBounds().getWidth()/2,grasshopper.getPosition().y+grasshopper.getBounds().getHeight()/2,grasshopper.getRange().radius);
@@ -104,6 +103,8 @@ public class GameState extends State {
         //-----------------------------------------
         shapeRenderer.end();
         controller.draw();
+
+
     }
 
     public void update(float dt) {
@@ -114,28 +115,23 @@ public class GameState extends State {
 
         grasshopper.update(Gdx.graphics.getDeltaTime());
         house.update(Gdx.graphics.getDeltaTime());
-        collide();
-
-
-
+        //collide();
 
 
         for (int i = 0; i < sunArray.size; i++) {
             sunArray.get(i).update(dt);
-            if(grass.getBounds().overlaps(sunArray.get(i).getBounds())) {
-                sunArray.removeValue(sunArray.get(i),true);
+            if (grass.getBounds().overlaps(sunArray.get(i).getBounds())) {
+                sunArray.removeValue(sunArray.get(i), true);
                 musicDeath.play();
             }
-        }
-        collide();
-        //handleInput();
 
-    public void collide(){
-        if(sun.getBounds().contains(grass.getBounds()) && sun.isAlive){
-            musicDeath.play();
-            sun.isAlive = false;
-            System.out.println("rem best girl");
+
         }
+        //handleInput();
+    }
+
+    public void collide() {
+
         if(tree.getBounds().contains(grass.getBounds())){
             System.out.println("but i love emilia");
         }else if (Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
@@ -163,11 +159,10 @@ public class GameState extends State {
 
     }
 
-    public void collide(){
         //if(grass.getBounds().overlaps(sun.getBounds()) && sun.isAlive){
          //   musicDeath.play();
             //sun.isAlive = false;
-        }
+        //}
 
         //sun.getBounds().setPosition(sun.getPosition().x,sun.getPosition().y);
        //

@@ -28,6 +28,9 @@ public class GameState extends State {
     Grasshopper grasshopper;
     House house;
 
+
+
+    int point = 0;
     ShapeRenderer shapeRenderer;
 
 
@@ -90,6 +93,8 @@ public class GameState extends State {
         house.update(Gdx.graphics.getDeltaTime());
         collide();
 
+        camera.lookAt(grass.getPosition().x,grass.getPosition().y,0);
+
 
 
     }
@@ -99,6 +104,8 @@ public class GameState extends State {
             musicDeath.play();
             sun.isAlive = false;
             System.out.println("rem best girl");
+            point++;
+            System.out.println(point);
         }
         if(tree.getBounds().contains(grass.getBounds())){
             System.out.println("but i love emilia");

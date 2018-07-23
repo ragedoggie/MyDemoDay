@@ -4,6 +4,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.misisonbit.Sprites.Animations;
 
@@ -22,6 +23,7 @@ public class Grass extends Organisms {
         sprite = new Texture("grass2.png");
         grassAnim = new Animations(new TextureRegion(sprite), 3, 0.8f,2,2);
         bounds = new Rectangle(x, y, grassAnim.getFrame().getRegionWidth(), grassAnim.getFrame().getRegionHeight());
+        offset = new Vector2(getTexture().getRegionWidth(),getTexture().getRegionHeight());
     }
 
     public boolean keyDown(int keycode) {

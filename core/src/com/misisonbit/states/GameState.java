@@ -29,10 +29,10 @@ public class GameState extends State {
     //Sun sun;
     Controller controller;
     Organisms organisms;
-    Tree tree;
+    //Tree tree;
+    Array<Tree> treeArray;
 
     Array <Sun> sunArray;
-    int sunNum;
     Random random;
 
     Grasshopper grasshopper;
@@ -44,6 +44,16 @@ public class GameState extends State {
     public GameState(MyGdxGame game) {
         super(game);
         random = new Random();
+
+        treeArray = new Array<Tree>();
+        for(int i = 0; i< 20; i++) {
+            int x = random.nextInt(MyGdxGame.width);
+            int y = random.nextInt(MyGdxGame.height);
+            Tree t = new Tree(x,y);
+            treeArray.add(t);
+
+        }
+
         sunArray = new Array<Sun>();
 
         for(int i = 0; i < 30; i++) {
@@ -55,7 +65,7 @@ public class GameState extends State {
 
         grass = new Grass(300,100);
         //sunArray.add(sun);
-        tree = new Tree(600,100);
+        //tree = new Tree(600,100);
         grasshopper = new Grasshopper(500,50);
         house = new House(800,430);
 
@@ -74,7 +84,11 @@ public class GameState extends State {
         font.draw(batch,this.getClass().toString(),0,10);
         batch.draw(grass.getTexture(), grass.getPosition().x, grass.getPosition().y);
 
-        batch.draw(tree.getTexture(),600,100);
+        //batch.draw(tree.getTexture(),600,100);
+
+        for(int i = 0; i < treeArray.size; i ++) {
+            batch.draw(treeArray.get(i).getTexture(),treeArray.get(i).getPosition().x,treeArray.get(i).getPosition().y);
+        }
 
 
 
@@ -97,7 +111,12 @@ public class GameState extends State {
         for(Sun s : sunArray) {
             shapeRenderer.rect(s.getBounds().x, s.getBounds().y, s.getBounds().getWidth(), s.getBounds().getHeight());
         }
-        shapeRenderer.rect(tree.getPosition().x,tree.getPosition().y,tree.getTexture().getRegionWidth(),tree.getTexture().getRegionHeight());
+
+        for(Tree t : treeArray) {
+            shapeRenderer.rect(t.getBounds().x,t.getBounds().y, t.getBounds().getWidth(),t.getBounds().getHeight());
+        }
+
+        //shapeRenderer.rect(tree.getPosition().x,tree.getPosition().y,tree.getTexture().getRegionWidth(),tree.getTexture().getRegionHeight());
         shapeRenderer.rect(grasshopper.getPosition().x,grasshopper.getPosition().y,grasshopper.getTexture().getRegionWidth(),grasshopper.getTexture().getRegionHeight());
         shapeRenderer.circle(grasshopper.getPosition().x+grasshopper.getBounds().getWidth()/2,grasshopper.getPosition().y+grasshopper.getBounds().getHeight()/2,grasshopper.getRange().radius);
         shapeRenderer.rect(house.getPosition().x,house.getPosition().y,house.getTexture().getRegionWidth(),house.getTexture().getRegionHeight());
@@ -112,7 +131,11 @@ public class GameState extends State {
 
         controller.update(grass);
         grass.update(Gdx.graphics.getDeltaTime());
-        tree.update(Gdx.graphics.getDeltaTime());
+        //tree.update(Gdx.graphics.getDeltaTime());
+
+        for (int i = 0; i < treeArray.size; i ++) {
+            treeArray.get(i).update(dt);
+        }
 
         grasshopper.update(Gdx.graphics.getDeltaTime());
         house.update(Gdx.graphics.getDeltaTime());
@@ -133,6 +156,7 @@ public class GameState extends State {
 
     public void collide() {
 
+       /*
         if(tree.getBounds().contains(grass.getBounds())){
             System.out.println("but i love emilia");
 
@@ -146,7 +170,7 @@ public class GameState extends State {
             System.out.println("testing house");
         }
 
-
+*/
 
 
 

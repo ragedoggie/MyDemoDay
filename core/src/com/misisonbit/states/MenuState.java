@@ -18,8 +18,6 @@ public class MenuState extends State {
         super(game);
         screen = new Texture("fish.jpg");
         grass = new Grass(10, 10);
-
-
     }
 
     public void drawGame() {

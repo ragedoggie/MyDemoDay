@@ -39,7 +39,7 @@ public class GameState extends State {
         random = new Random();
         sunArray = new Array<Sun>();
 
-        for(int i = 0; i < 20; i++) {
+        for(int i = 0; i < 30; i++) {
             int x = random.nextInt(MyGdxGame.width);
             int y = random.nextInt(MyGdxGame.height);
             Sun s = new Sun(x,y);
@@ -101,6 +101,7 @@ public class GameState extends State {
             sunArray.get(i).update(dt);
             if(grass.getBounds().overlaps(sunArray.get(i).getBounds())) {
                 sunArray.removeValue(sunArray.get(i),true);
+                musicDeath.play();
             }
         }
         collide();

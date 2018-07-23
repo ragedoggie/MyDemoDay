@@ -14,18 +14,24 @@ public class Grasshopper extends Organisms{
     Animations grasshopperAnim;
     Texture texture;
 
+
+
     public Grasshopper(float x, float y){
         super(x,y);
         position = new Vector2(x, y);
         texture = new Texture("grasshopper2.png");
         grasshopperAnim = new Animations(new TextureRegion(texture), 3, 0.5f,3,1);
-        bounds = new Rectangle(x, y, grasshopperAnim.getFrame().getRegionWidth(), grasshopperAnim.getFrame().getRegionHeight());
+        bounds = new Rectangle(position.x, position.y, grasshopperAnim.getFrame().getRegionWidth(), grasshopperAnim.getFrame().getRegionHeight());
         range = new Circle(position.x+bounds.getWidth()/2,position.y+bounds.getHeight()/2,100);
     }
 
     public void update(float dt){
         grasshopperAnim.update(dt);
+
+
+
     }
+
     public Vector2 getPosition(){
         return position;
     }
@@ -38,9 +44,13 @@ public class Grasshopper extends Organisms{
         return bounds;
     }
 
+
+
     public Circle getRange() {
         return range;
     }
+
+
 
     public void dispose() {
         texture.dispose();

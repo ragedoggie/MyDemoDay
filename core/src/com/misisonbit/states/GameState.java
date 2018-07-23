@@ -46,7 +46,7 @@ public class GameState extends State {
         random = new Random();
 
         treeArray = new Array<Tree>();
-        for(int i = 0; i< 20; i++) {
+        for(int i = 0; i< 5; i++) {
             int x = random.nextInt(MyGdxGame.width);
             int y = random.nextInt(MyGdxGame.height);
             Tree t = new Tree(x,y);
@@ -98,7 +98,7 @@ public class GameState extends State {
         }
 
 
-        batch.draw(grasshopper.getTexture(),500,50);
+        batch.draw(grasshopper.getTexture(),grasshopper.getPosition().x,grasshopper.getPosition().y);
         batch.draw(house.getTexture(),800,430);
         batch.end();
 
@@ -129,6 +129,9 @@ public class GameState extends State {
 
     public void update(float dt) {
 
+        System.out.println("grass x: "+grass.getPosition().x+" grass y: "+grass.getPosition().y);
+
+
         controller.update(grass);
         grass.update(Gdx.graphics.getDeltaTime());
         //tree.update(Gdx.graphics.getDeltaTime());
@@ -139,7 +142,9 @@ public class GameState extends State {
 
         grasshopper.update(Gdx.graphics.getDeltaTime());
         house.update(Gdx.graphics.getDeltaTime());
-        //collide();
+
+        collide();
+
 
 
         for (int i = 0; i < sunArray.size; i++) {
@@ -156,27 +161,41 @@ public class GameState extends State {
 
     public void collide() {
 
-       /*
-        if(tree.getBounds().contains(grass.getBounds())){
-            System.out.println("but i love emilia");
+        for(int i = 0;i<treeArray.size;i++) {
+            if (treeArray.get(i).getBounds().contains(grass.getBounds())){
+                System.out.println("but i love emilia");
 
-        }else if (Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
-            System.out.println("remilia");
+            }else if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
+                System.out.println("remilia");
+            }
         }
-        if(grass.getBounds().overlaps(grasshopper.getBounds())){
-            System.out.println("who's rem");
+//        if(grass.getBounds().overlaps(grasshopper.getBounds())){
+//            System.out.println("who's rem");
+//        }
+//        if (grass.getBounds().overlaps(house.getBounds())){
+//            System.out.println("testing house");
+//        }
+
+
+
+
+
+        if(Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
+            grasshopper.getBounds().setPosition(grasshopper.getPosition().x, grasshopper.getPosition().y);
+            grasshopper.getRange().setPosition(grasshopper.getPosition().x,grasshopper.getPosition().y);
+
+            if(grasshopper.getPosition().x>=grass.getPosition().x){
+                grasshopper.getPosition().x-=1.2;
+            }else{
+                grasshopper.getPosition().x+=1.2;
+            }
+
+            if(grasshopper.getPosition().y>=grass.getPosition().y){
+                grasshopper.getPosition().y-=1.2;
+            }else{
+                grasshopper.getPosition().y+=1.2;
+            }
         }
-        if (grass.getBounds().overlaps(house.getBounds())){
-            System.out.println("testing house");
-        }
-
-*/
-
-
-
-        /*if(Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
-            System.out.println("remilia");
-        }*/
         //import Intersector library
 
 

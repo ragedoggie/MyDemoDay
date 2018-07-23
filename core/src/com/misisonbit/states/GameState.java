@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
@@ -134,6 +135,7 @@ public class GameState extends State {
 
         if(tree.getBounds().contains(grass.getBounds())){
             System.out.println("but i love emilia");
+
         }else if (Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
             System.out.println("remilia");
         }

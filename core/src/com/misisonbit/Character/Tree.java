@@ -1,5 +1,6 @@
 package com.misisonbit.Character;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -23,6 +24,7 @@ public class Tree extends Organisms{
         treeAnim = new Animations(new TextureRegion(texture), 4, 0.5f,2,2);
         bounds = new Rectangle(position.x,position.y,treeAnim.getFrame().getRegionWidth(),treeAnim.getFrame().getRegionHeight());
 
+
     }
 
     public Rectangle getBounds() {
@@ -37,6 +39,8 @@ public class Tree extends Organisms{
         treeAnim.update(dt);
 
     }
+
+
 
     public void dispose () {
         texture.dispose();

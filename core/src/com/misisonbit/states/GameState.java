@@ -19,6 +19,9 @@ public class GameState extends State {
     Organisms organisms;
     Tree tree;
 
+
+
+    int point = 0;
     ShapeRenderer shapeRenderer;
 
 
@@ -61,6 +64,8 @@ public class GameState extends State {
         tree.update(Gdx.graphics.getDeltaTime());
         collide();
 
+        camera.lookAt(grass.getPosition().x,grass.getPosition().y,0);
+
 
 
     }
@@ -68,6 +73,8 @@ public class GameState extends State {
     public void collide(){
         if(grass.getBounds().overlaps(sun.getBounds())){
             System.out.println("rem best girl");
+            point++;
+            System.out.println(point);
         }
 
         sun.getBounds().setPosition(sun.getPosition().x,sun.getPosition().y);

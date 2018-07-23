@@ -1,26 +1,17 @@
 package com.misisonbit.Character;
 
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Array;
 import com.misisonbit.Sprites.Animations;
-
 
 public class Sun extends Organisms {
 
-    static final int GRAVITY = 0;
-    static final int MOVEMENT = 100;
     Vector3 position;
     Rectangle bounds;
     Animations sunAnim;
     Texture texture;
-
-    //Sound ray;
-
-
 
     public Sun(float x, float y){
         super(x,y);
@@ -28,27 +19,15 @@ public class Sun extends Organisms {
         texture = new Texture("Sun.png");
         sunAnim = new Animations(new TextureRegion(texture), 2, 0.5f,2,1);
         bounds = new Rectangle(x, y, sunAnim.getFrame().getRegionWidth(), sunAnim.getFrame().getRegionHeight());
-
-        //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
-
     }
 
     public void update(float dt){
         sunAnim.update(dt);
-
-
         }
-
-
-    //public Vector3 getPosition() {
-  //      return position;
-   // }
 
     public TextureRegion getTexture() {
         return sunAnim.getFrame();
     }
-
-
 
     public Rectangle getBounds() {
         return bounds;

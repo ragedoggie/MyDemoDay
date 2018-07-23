@@ -13,11 +13,10 @@ public class Sun extends Organisms {
 
     static final int GRAVITY = 0;
     static final int MOVEMENT = 100;
-    Vector3 position;
     Rectangle bounds;
     Animations sunAnim;
     Texture texture;
-    boolean alive = false;
+
 
 
     //Sound ray;
@@ -26,7 +25,6 @@ public class Sun extends Organisms {
 
     public Sun(float x, float y){
         super(x,y);
-        position = new Vector3(x, y, 0);
         texture = new Texture("Sun.png");
         sunAnim = new Animations(new TextureRegion(texture), 2, 0.5f,2,1);
         bounds = new Rectangle(x, y, sunAnim.getFrame().getRegionWidth(), sunAnim.getFrame().getRegionHeight());
@@ -38,6 +36,7 @@ public class Sun extends Organisms {
             sunAnim.update(dt);
 
 
+            bounds.setPosition(position.x, position.y);
         }
 
 

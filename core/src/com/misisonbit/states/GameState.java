@@ -8,16 +8,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.math.Intersector;
 import com.misisonbit.Character.Grass;
+import com.misisonbit.Character.Grasshopper;
+import com.misisonbit.Character.House;
 import com.misisonbit.Character.Organisms;
 import com.misisonbit.Character.Sun;
 import com.misisonbit.Character.Tree;
 import com.misisonbit.MyGdxGame;
 import com.misisonbit.utils.Controller;
 
-
 import java.awt.Rectangle;
 import java.util.Random;
+
 
 public class GameState extends State {
     Sound musicDeath;
@@ -26,10 +29,13 @@ public class GameState extends State {
     Controller controller;
     Organisms organisms;
     Tree tree;
+
     Array <Sun> sunArray;
     int sunNum;
     Random random;
 
+    Grasshopper grasshopper;
+    House house;
 
     ShapeRenderer shapeRenderer;
 
@@ -49,6 +55,8 @@ public class GameState extends State {
         grass = new Grass(300,100);
         //sunArray.add(sun);
         tree = new Tree(600,100);
+        grasshopper = new Grasshopper(500,50);
+        house = new House(800,430);
 
         controller = new Controller();
         organisms = new Organisms(0f,0f);
@@ -68,11 +76,15 @@ public class GameState extends State {
         batch.draw(tree.getTexture(),600,100);
 
 
+
         for (int i = 0; i < sunArray.size; i++) {
                 batch.draw(sunArray.get(i).getTexture(), sunArray.get(i).getPosition().x, sunArray.get(i).getPosition().y);
 
         }
 
+
+        batch.draw(grasshopper.getTexture(),500,50);
+        batch.draw(house.getTexture(),800,430);
         batch.end();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -84,6 +96,11 @@ public class GameState extends State {
         for(Sun s : sunArray) {
             shapeRenderer.rect(s.getBounds().x, s.getBounds().y, s.getBounds().getWidth(), s.getBounds().getHeight());
         }
+        shapeRenderer.rect(sun.getPosition().x,sun.getPosition().y,sun.getBounds().getWidth(),sun.getBounds().getHeight());
+        shapeRenderer.rect(tree.getPosition().x,tree.getPosition().y,tree.getTexture().getRegionWidth(),tree.getTexture().getRegionHeight());
+        shapeRenderer.rect(grasshopper.getPosition().x,grasshopper.getPosition().y,grasshopper.getTexture().getRegionWidth(),grasshopper.getTexture().getRegionHeight());
+        shapeRenderer.circle(grasshopper.getPosition().x+grasshopper.getBounds().getWidth()/2,grasshopper.getPosition().y+grasshopper.getBounds().getHeight()/2,grasshopper.getRange().radius);
+        shapeRenderer.rect(house.getPosition().x,house.getPosition().y,house.getTexture().getRegionWidth(),house.getTexture().getRegionHeight());
         //-----------------------------------------
         shapeRenderer.end();
         controller.draw();
@@ -94,6 +111,12 @@ public class GameState extends State {
         controller.update(grass);
         grass.update(Gdx.graphics.getDeltaTime());
         tree.update(Gdx.graphics.getDeltaTime());
+
+        grasshopper.update(Gdx.graphics.getDeltaTime());
+        house.update(Gdx.graphics.getDeltaTime());
+        collide();
+
+
 
 
 
@@ -106,6 +129,35 @@ public class GameState extends State {
         }
         collide();
         //handleInput();
+
+    public void collide(){
+        if(sun.getBounds().contains(grass.getBounds()) && sun.isAlive){
+            musicDeath.play();
+            sun.isAlive = false;
+            System.out.println("rem best girl");
+        }
+        if(tree.getBounds().contains(grass.getBounds())){
+            System.out.println("but i love emilia");
+        }else if (Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
+            System.out.println("remilia");
+        }
+        if(grass.getBounds().overlaps(grasshopper.getBounds())){
+            System.out.println("who's rem");
+        }
+        if (grass.getBounds().overlaps(house.getBounds())){
+            System.out.println("testing house");
+        }
+
+
+
+
+
+        /*if(Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
+            System.out.println("remilia");
+        }*/
+        //import Intersector library
+
+
 
 
 

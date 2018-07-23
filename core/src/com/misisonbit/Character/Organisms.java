@@ -13,17 +13,21 @@ public class Organisms {
     int moveSpeed;
     protected Vector2 position;
     protected Vector2 velocity;
+    public boolean isAlive;
    // public static boolean upPressed, downPressed, leftPressed, rightPressed = false;
 
 
     public Organisms(float x,float y) {
         velocity = new Vector2();
         position = new Vector2(x, y);
+        isAlive =  true;
 
     }
 
 
     public void update(float dt) {
+
+
      //   if (MyGdxGame.isUpPressed()) {
      //       position.add(0, velocity.y);
 //        }

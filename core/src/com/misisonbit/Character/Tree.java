@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.misisonbit.Sprites.Animations;
 
-import com.badlogic.gdx.math.Rectangle;
+import java.awt.Rectangle;
 
 public class Tree extends Organisms{
 
@@ -14,16 +14,14 @@ public class Tree extends Organisms{
     Animations treeAnim;
     Vector3 position;
 
+
     public Tree(float x , float y){
         super(x,y);
         position = new Vector3(x, y,0);
         texture = new Texture("tree.png");
         treeAnim = new Animations(new TextureRegion(texture), 4, 0.5f,2,2);
-        bounds = new Rectangle((int) x,(int) y, treeAnim.getFrame().getRegionWidth(), treeAnim.getFrame().getRegionHeight());
-    }
+        bounds = new Rectangle();
 
-    public com.badlogic.gdx.math.Rectangle getBounds() {
-        return bounds;
     }
 
     public TextureRegion getTexture() {
@@ -32,9 +30,14 @@ public class Tree extends Organisms{
 
     public void update(float dt) {
         treeAnim.update(dt);
+
     }
 
     public void dispose () {
         texture.dispose();
     }
 }
+
+
+
+

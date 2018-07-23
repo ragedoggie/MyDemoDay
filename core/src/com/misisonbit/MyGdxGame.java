@@ -10,15 +10,15 @@ import com.misisonbit.states.MenuState;
 
 public class MyGdxGame extends Game {
 
-	public static int width = 800;
-	public static int height = 480;
+	public static int width = 960;
+	public static int height = 540;
 
 
 	
 	@Override
 	public void create () {
 
-		Gdx.gl.glClearColor(140/255f, 193/255f, 48/255f, 1);
+		Gdx.gl.glClearColor(114/255f, 175/255f, 56/255f, 1);
 		this.setScreen(new MenuState(this));
 
 	}

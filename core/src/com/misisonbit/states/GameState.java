@@ -1,7 +1,7 @@
 package com.misisonbit.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.misisonbit.Character.Grass;
 import com.misisonbit.Character.Organisms;
@@ -10,15 +10,17 @@ import com.misisonbit.Character.Tree;
 import com.misisonbit.MyGdxGame;
 import com.misisonbit.utils.Controller;
 
+import java.awt.Rectangle;
+
 public class GameState extends State {
     Grass grass;
     Sun sun;
     Controller controller;
     Organisms organisms;
     Tree tree;
-    private Sound collision;
 
     ShapeRenderer shapeRenderer;
+
 
     public GameState(MyGdxGame game) {
         super(game);
@@ -30,6 +32,7 @@ public class GameState extends State {
         organisms = new Organisms(0f,0f);
 
         shapeRenderer = new ShapeRenderer();
+
     }
 
     public void drawGame() {
@@ -57,26 +60,30 @@ public class GameState extends State {
         sun.update(Gdx.graphics.getDeltaTime());
         tree.update(Gdx.graphics.getDeltaTime());
         collide();
+
+
+
     }
 
     public void collide(){
         if(grass.getBounds().overlaps(sun.getBounds())){
-            collision = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/death.wav"));
-            collision.play();
-        }
-
-        if(grass.getBounds().overlaps(tree.getBounds())){
-            collision = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/death.wav"));
-            collision.play();
+            System.out.println("rem best girl");
         }
 
         sun.getBounds().setPosition(sun.getPosition().x,sun.getPosition().y);
         grass.getBounds().setPosition(grass.getPosition().x,grass.getPosition().y);
-        tree.getBounds().setPosition(tree.getPosition().x, tree.getPosition().y);
+
+
     }
+
+
+
+
+
 
     public void dispose() {
         batch.dispose();
         shapeRenderer.dispose();
     }
+
 }

@@ -11,7 +11,7 @@ import static com.badlogic.gdx.scenes.scene2d.InputEvent.Type.keyDown;
 
 public class Grass extends Organisms {
 
-    Vector3 position;
+
     Rectangle bounds;
     Animations grassAnim;
     Texture sprite;
@@ -19,7 +19,6 @@ public class Grass extends Organisms {
 
     public Grass(float x, float y){
         super(x,y);
-        position = new Vector3(x, y, 0);
         sprite = new Texture("grass2.png");
         grassAnim = new Animations(new TextureRegion(sprite), 3, 0.8f,2,2);
         bounds = new Rectangle(x, y, grassAnim.getFrame().getRegionWidth(), grassAnim.getFrame().getRegionHeight());
@@ -42,6 +41,7 @@ public class Grass extends Organisms {
     public void update(float dt){
         super.update(dt);
         grassAnim.update(dt);
+        bounds.setPosition(position.x, position.y);
     }
 
     public TextureRegion getTexture() {

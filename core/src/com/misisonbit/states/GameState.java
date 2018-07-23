@@ -72,18 +72,10 @@ public class GameState extends State {
 
         sun.getBounds().setPosition(sun.getPosition().x,sun.getPosition().y);
         grass.getBounds().setPosition(grass.getPosition().x,grass.getPosition().y);
-
-
     }
-
-
-
-
-
 
     public void dispose() {
         batch.dispose();
         shapeRenderer.dispose();
     }
-
 }

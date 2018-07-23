@@ -93,9 +93,6 @@ public class GameState extends State {
         house.update(Gdx.graphics.getDeltaTime());
         collide();
 
-        camera.lookAt(grass.getPosition().x,grass.getPosition().y,0);
-
-
 
     }
 

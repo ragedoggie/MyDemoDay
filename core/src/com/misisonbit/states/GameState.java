@@ -58,7 +58,7 @@ public class GameState extends State {
 
         sunArray = new Array<Sun>();
 
-        for(int i = 0; i < 30; i++) {
+        for(int i = 0; i < 80; i++) {
             int x = random.nextInt(MyGdxGame.width);
             int y = random.nextInt(MyGdxGame.height);
             Sun s = new Sun(x,y);

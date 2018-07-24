@@ -40,8 +40,6 @@ public class GameState extends State {
 
     ShapeRenderer shapeRenderer;
 
-
-
     public static int LVpoints = 0;
 
 
@@ -60,7 +58,7 @@ public class GameState extends State {
 
         sunArray = new Array<Sun>();
 
-        for(int i = 0; i < 30; i++) {
+        for(int i = 0; i < 80; i++) {
             int x = random.nextInt(MyGdxGame.width);
             int y = random.nextInt(MyGdxGame.height);
             Sun s = new Sun(x,y);
@@ -158,9 +156,9 @@ public class GameState extends State {
             treeArray.get(i).update(dt);
         }
 
-
         grasshopper.update(Gdx.graphics.getDeltaTime());
         house.update(Gdx.graphics.getDeltaTime());
+
 
         collide();
 

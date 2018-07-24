@@ -1,18 +1,25 @@
 package com.misisonbit.Character;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.misisonbit.Sprites.Animations;
 
+import static com.misisonbit.states.GameState.LVpoints;
+
 public class Grasshopper extends Organisms{
     Vector2 position;
     Rectangle bounds;
     Circle range;
+    Sprite grasshopperSprite;
     Animations grasshopperAnim;
+    Animations rabbitAnim2;
+    Animations grassAnim2;
     Texture texture;
+    Texture texture2;
 
 
 
@@ -27,7 +34,6 @@ public class Grasshopper extends Organisms{
 
     public void update(float dt){
         grasshopperAnim.update(dt);
-
 
 
     }

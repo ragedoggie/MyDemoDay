@@ -60,16 +60,18 @@ public class Grass extends Organisms {
     }
 
 
+
+
     public void update(float dt){
         super.update(dt);
 
         bounds.setPosition(position.x, position.y);
 
-        if(LVpoints>2){
+        if(LVpoints<2){
             grassSprite.setTexture(texture);
             currentAnim = grassAnim;
             grassAnim.update(dt);
-        }else if(LVpoints<2){
+        }else if(LVpoints>2){
             grassSprite.setTexture(texture2);
             currentAnim = grassAnim2;
             grassAnim2.update(dt);
@@ -91,8 +93,8 @@ public class Grass extends Organisms {
         return bounds;
     }
 
-    public Sprite getGrassSprite() {
-        return grassSprite;
+    public Animations getCurrentAnim() {
+        return currentAnim;
     }
 
     public void dispose() {

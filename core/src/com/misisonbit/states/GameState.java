@@ -151,9 +151,9 @@ public class GameState extends State {
             treeArray.get(i).update(dt);
         }
 
-
         grasshopper.update(Gdx.graphics.getDeltaTime());
         house.update(Gdx.graphics.getDeltaTime());
+
 
         collide();
 

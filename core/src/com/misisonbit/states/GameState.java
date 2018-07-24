@@ -40,8 +40,6 @@ public class GameState extends State {
 
     ShapeRenderer shapeRenderer;
 
-
-
     public static int LVpoints = 0;
 
 

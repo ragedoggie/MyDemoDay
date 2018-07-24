@@ -45,19 +45,19 @@ public class Grass extends Organisms {
         offset = new Vector2(getTexture().getRegionWidth(),getTexture().getRegionHeight());
     }
 
-    public boolean keyDown(int keycode) {
-        if(keycode == Input.Keys.UP){
-            upPressed = true;
-        }
-
-        return true;
-    }
-    public boolean keyUp(int keycode) {
-        if(keycode == Input.Keys.UP){
-            upPressed = false;
-        }
-        return true;
-    }
+//    public boolean keyDown(int keycode) {
+//        if(keycode == Input.Keys.UP){
+//            upPressed = true;
+//        }
+//
+//        return true;
+//    }
+//    public boolean keyUp(int keycode) {
+//        if(keycode == Input.Keys.UP){
+//            upPressed = false;
+//        }
+//        return true;
+//    }
 
 
     public void update(float dt){
@@ -66,11 +66,11 @@ public class Grass extends Organisms {
         bounds.setPosition(position.x, position.y);
 
         if(LVpoints>2){
-            grassSprite.setTexture(texture);
+            grassSprite.setTexture(grassAnim2);
             currentAnim = grassAnim;
             grassAnim.update(dt);
         }else if(LVpoints<2){
-            grassSprite.setTexture(texture2);
+            grassSprite.setTexture(texture);
             currentAnim = grassAnim2;
             grassAnim2.update(dt);
 

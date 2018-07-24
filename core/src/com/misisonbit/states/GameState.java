@@ -110,6 +110,11 @@ public class GameState extends State {
         batch.draw(house.getTexture(),800,430);
         batch.end();
 
+
+
+
+
+
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         //--------------shows hit box--------------
@@ -187,6 +192,8 @@ public class GameState extends State {
         for(int i = 0;i<treeArray.size;i++) {
             if (treeArray.get(i).getBounds().contains(grass.getBounds())){
                 System.out.println("but i love emilia");
+
+
 
             }else if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
                 System.out.println("remilia");

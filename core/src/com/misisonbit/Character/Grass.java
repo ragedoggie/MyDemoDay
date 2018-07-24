@@ -18,15 +18,16 @@ public class Grass extends Organisms {
 
     Rectangle bounds;
 
-   // Animations currentAnim;
+    Animations currentAnim;
     Animations grassAnim;
     Animations grassAnim2;
-    Animations getGrassAnim2;
+    Animations grassAnim3;
     //Texture sprite;
     Sprite grassSprite;
 
     Texture texture;
-    Texture texture2;
+    Texture texture2; //hopper
+    Texture texture3; //rabbit
 
 
     private static boolean upPressed, downPressed, leftPressed, rightPressed = false;
@@ -37,10 +38,13 @@ public class Grass extends Organisms {
         //sprite = new Texture("grass2.png");
         texture = new Texture("grass2.png");
         texture2 = new Texture("grasshopper2.png");
+        texture3 = new Texture("Rabbit.png");
         grassSprite = new Sprite(texture);
 
         grassAnim = new Animations(new TextureRegion(texture), 3, 0.8f,2,2);
         grassAnim2 = new Animations(new TextureRegion(texture2), 3, 0.5f,3,1);
+        grassAnim3 = new Animations(new TextureRegion(texture3), 2, .3f,2,2);
+
 
         //bounds = new Rectangle(x, y, grassAnim.getFrame().getRegionWidth(), grassAnim.getFrame().getRegionHeight());
         offset = new Vector2(getTexture().getRegionWidth(),getTexture().getRegionHeight());
@@ -66,22 +70,31 @@ public class Grass extends Organisms {
     public void update(float dt){
         super.update(dt);
 
-       // bounds.setPosition(position.x, position.y);
+        //bounds.setPosition(position.x, position.y);
 
-        if(LVpoints<=2){
+        if(LVpoints<2){
             grassSprite.setTexture(texture);
             currentAnim = grassAnim;
             grassAnim.update(dt);
-        }else if(LVpoints>=2 && LVpoints < 10){
+
+        }else if(LVpoints>2 && LVpoints<4){
             grassSprite.setTexture(texture2);
             currentAnim = grassAnim2;
             grassAnim2.update(dt);
 
+
+        }else if(LVpoints>4 && LVpoints<6){
+            grassSprite.setTexture(texture3);
+            currentAnim = grassAnim3;
+            grassAnim3.update(dt);
         }
+
+
+
 
         bounds = new Rectangle(position.x, position.y, currentAnim.getFrame().getRegionWidth(), currentAnim.getFrame().getRegionHeight());
 
-        }
+    }
 
 
 

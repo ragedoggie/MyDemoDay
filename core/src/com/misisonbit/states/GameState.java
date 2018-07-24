@@ -42,6 +42,9 @@ public class GameState extends State {
 
 
 
+    public static int LVpoints = 0;
+
+
     public GameState(MyGdxGame game) {
         super(game);
         random = new Random();
@@ -77,13 +80,17 @@ public class GameState extends State {
 
         shapeRenderer = new ShapeRenderer();
 
+
+
+
     }
 
     public void drawGame() {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         font.draw(batch,this.getClass().toString(),0,10);
-        batch.draw(grass.getTexture(), grass.getPosition().x, grass.getPosition().y);
+        batch.draw(grass.getGrassSprite(), grass.getPosition().x, grass.getPosition().y);
+
 
         //batch.draw(tree.getTexture(),600,100);
 
@@ -132,10 +139,10 @@ public class GameState extends State {
 
 
     }
-
+//update============================================================================================
     public void update(float dt) {
 
-        System.out.println("grass x: "+grass.getPosition().x+" grass y: "+grass.getPosition().y);
+        //System.out.println("grass x: "+grass.getPosition().x+" grass y: "+grass.getPosition().y);
 
 
         controller.update(grass);
@@ -145,6 +152,7 @@ public class GameState extends State {
         for (int i = 0; i < treeArray.size; i ++) {
             treeArray.get(i).update(dt);
         }
+
 
         grasshopper.update(Gdx.graphics.getDeltaTime());
         house.update(Gdx.graphics.getDeltaTime());
@@ -157,6 +165,15 @@ public class GameState extends State {
             sunArray.get(i).update(dt);
             if (grass.getBounds().overlaps(sunArray.get(i).getBounds())) {
                 sunArray.removeValue(sunArray.get(i), true);
+
+                LVpoints++;
+                System.out.println(LVpoints);
+
+//                if(LVpoints >= 2){
+//
+//                }
+
+
                 musicDeath.play();
             }
 

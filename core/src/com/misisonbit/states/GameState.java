@@ -41,6 +41,7 @@ public class GameState extends State {
     ShapeRenderer shapeRenderer;
 
 
+
     public GameState(MyGdxGame game) {
         super(game);
         random = new Random();

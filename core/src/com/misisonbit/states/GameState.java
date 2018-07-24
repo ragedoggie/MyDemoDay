@@ -87,7 +87,7 @@ public class GameState extends State {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         font.draw(batch,this.getClass().toString(),0,10);
-        batch.draw(grass.getGrassSprite(), grass.getPosition().x, grass.getPosition().y);
+        batch.draw(grass.getCurrentAnim().getFrame(), grass.getPosition().x, grass.getPosition().y);
 
 
         //batch.draw(tree.getTexture(),600,100);

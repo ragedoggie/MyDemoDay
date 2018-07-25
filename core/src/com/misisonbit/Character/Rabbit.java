@@ -22,9 +22,9 @@ import com.misisonbit.Sprites.Animations;
     public Rabbit(int x, int y){
         super(x, y);
         position = new Vector3(x, y, 0);
-        texture = new Texture("Rabbit.png");
+        texture = new Texture("Rabbit2.png");
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
-        rabbitAnim = new Animations(new TextureRegion(texture), 4, .5f,2,2);
+        rabbitAnim = new Animations(new TextureRegion(texture), 7, .3f,3,3);
 
         //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
 

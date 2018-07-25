@@ -1,8 +1,6 @@
 package com.misisonbit.Character;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -13,6 +11,7 @@ import com.misisonbit.Sprites.Animations;
 
 import static com.badlogic.gdx.scenes.scene2d.InputEvent.Type.keyDown;
 import static com.misisonbit.states.GameState.LVpoints;
+import static com.misisonbit.states.GameState.trophicLevel;
 
 public class Grass extends Organisms {
 
@@ -26,12 +25,10 @@ public class Grass extends Organisms {
     Animations grassAnim3;
     //Texture sprite;
     Sprite grassSprite;
-    Sound levelUp;
 
     Texture texture;
     Texture texture2; //hopper
     Texture texture3; //rabbit
-
 
     private static boolean upPressed, downPressed, leftPressed, rightPressed = false;
 
@@ -41,14 +38,12 @@ public class Grass extends Organisms {
         //sprite = new Texture("grass2.png");
         texture = new Texture("grass2.png");
         texture2 = new Texture("grasshopper2.png");
-        texture3 = new Texture("Rabbit.png");
+        texture3 = new Texture("Rabbit2.png");
         grassSprite = new Sprite(texture);
-        levelUp = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/chipquest.wav"));
-
 
         grassAnim = new Animations(new TextureRegion(texture), 3, 0.8f,2,2);
         grassAnim2 = new Animations(new TextureRegion(texture2), 3, 0.5f,3,1);
-        grassAnim3 = new Animations(new TextureRegion(texture3), 4, 0.5f,2,2);
+        grassAnim3 = new Animations(new TextureRegion(texture3), 7, .3f,3,3);
 
 
         //bounds = new Rectangle(x, y, grassAnim.getFrame().getRegionWidth(), grassAnim.getFrame().getRegionHeight());
@@ -77,21 +72,24 @@ public class Grass extends Organisms {
 
         //bounds.setPosition(position.x, position.y);
 
-        if(LVpoints == 0){
+        if(LVpoints<2){
             grassSprite.setTexture(texture);
             currentAnim = grassAnim;
             grassAnim.update(dt);
+            trophicLevel = 0;
 
-        }else if(LVpoints == 3){
+        }else if(LVpoints>=2 && LVpoints<8){
             grassSprite.setTexture(texture2);
             currentAnim = grassAnim2;
             grassAnim2.update(dt);
+            trophicLevel = 1;
 
 
-        }else if(LVpoints == 5){
+        }else if(LVpoints>=8){
             grassSprite.setTexture(texture3);
             currentAnim = grassAnim3;
             grassAnim3.update(dt);
+            trophicLevel = 2;
         }
 
 

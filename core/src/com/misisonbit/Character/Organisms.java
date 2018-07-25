@@ -18,6 +18,7 @@ public class Organisms {
     protected Vector2 velocity;
     public boolean isAlive;
     ShapeRenderer bounds;
+    //Rectangle bounds;
     Vector2 offset;
     Animations currentAnim;
    // public static boolean upPressed, downPressed, leftPressed, rightPressed = false;
@@ -28,6 +29,7 @@ public class Organisms {
         position = new Vector2(x, y);
         isAlive =  true;
         bounds = new ShapeRenderer();
+        //bounds = new Rectangle(0,0,0,0);
         offset = new Vector2();
 
     }
@@ -58,6 +60,11 @@ public class Organisms {
 
         position.add(velocity);
     }
+
+//    public Rectangle getbounds(){
+//        return bounds;
+//
+//    }
 
     public Vector2 getPosition() {
         return position;

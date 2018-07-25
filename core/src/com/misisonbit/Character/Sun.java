@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.misisonbit.MyGdxGame;
 import com.misisonbit.Sprites.Animations;
 
 
@@ -47,6 +48,8 @@ public class Sun extends Organisms {
     public TextureRegion getTexture() {
         return sunAnim.getFrame();
     }
+
+
 
 
 

@@ -65,7 +65,7 @@ public class GameState extends State {
 
         sunArray = new Array<Sun>();
 
-        for(int i = 0; i < 80; i++) {
+        for(int i = 0; i < 5; i++) {
             int x = random.nextInt(MyGdxGame.width);
             int y = random.nextInt(MyGdxGame.height);
             Sun s = new Sun(x,y);
@@ -176,10 +176,18 @@ public class GameState extends State {
 
 
 
+
         for (int i = 0; i < sunArray.size; i++) {
             sunArray.get(i).update(dt);
             if (grass.getBounds().overlaps(sunArray.get(i).getBounds())) {
                 sunArray.removeValue(sunArray.get(i), true);
+                int x = random.nextInt(MyGdxGame.width);
+                int y = random.nextInt(MyGdxGame.height);
+                Sun s = new Sun(x,y);
+                sunArray.add(s);
+
+
+
 
                 LVpoints++;
                 System.out.println(LVpoints);
@@ -187,9 +195,9 @@ public class GameState extends State {
 //                if(LVpoints >= 2){
 //
 //                }
-
-
                 musicDeath.play();
+
+
             }
 
 

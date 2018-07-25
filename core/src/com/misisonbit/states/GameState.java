@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -14,6 +15,7 @@ import com.misisonbit.Character.Grass;
 import com.misisonbit.Character.Grasshopper;
 import com.misisonbit.Character.House;
 import com.misisonbit.Character.Organisms;
+import com.misisonbit.Character.Rabbit;
 import com.misisonbit.Character.Sun;
 import com.misisonbit.Character.Tree;
 import com.misisonbit.MyGdxGame;
@@ -24,30 +26,35 @@ import java.util.Random;
 
 
 public class GameState extends State {
-    Sound musicDeath;
+    ParticleEffect effect;
+    Sound sound;
     Grass grass;
-    //Sun sun;
     Controller controller;
     Organisms organisms;
-    //Tree tree;
     Array<Tree> treeArray;
-
     Array <Sun> sunArray;
     Random random;
-
     Grasshopper grasshopper;
     House house;
-
+    Rabbit rabbit;
     ShapeRenderer shapeRenderer;
-
-
-
+    Music music;
     public static int LVpoints = 0;
 
+    public void create() {
+        music = Gdx.audio.newMusic(Gdx.files.internal("Forest_Ambience.mp3"));
+        music.setLooping(true);
+        music.setVolume(1f);
+        music.play();
+    }
 
     public GameState(MyGdxGame game) {
         super(game);
         random = new Random();
+        effect = new ParticleEffect();
+        effect.load(Gdx.files.internal("vsgame_0/Smoke"),Gdx.files.internal("vsgame_0"));
+        effect.start();
+        effect.setPosition(460, 240);
 
         treeArray = new Array<Tree>();
         for(int i = 0; i< 5; i++) {
@@ -76,7 +83,7 @@ public class GameState extends State {
         controller = new Controller();
         organisms = new Organisms(0f,0f);
 
-        musicDeath = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/crunch.mp3" ));
+        sound = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/crunch.mp3" ));
 
         shapeRenderer = new ShapeRenderer();
 
@@ -102,12 +109,12 @@ public class GameState extends State {
 
         for (int i = 0; i < sunArray.size; i++) {
                 batch.draw(sunArray.get(i).getTexture(), sunArray.get(i).getPosition().x, sunArray.get(i).getPosition().y);
-
         }
 
 
         batch.draw(grasshopper.getTexture(),grasshopper.getPosition().x,grasshopper.getPosition().y);
         batch.draw(house.getTexture(),800,430);
+        effect.draw(batch);
         batch.end();
 
 
@@ -161,6 +168,7 @@ public class GameState extends State {
 
         grasshopper.update(Gdx.graphics.getDeltaTime());
         house.update(Gdx.graphics.getDeltaTime());
+        effect.update(dt);
 
         collide();
 
@@ -179,7 +187,7 @@ public class GameState extends State {
 //                }
 
 
-                musicDeath.play();
+                sound.play();
             }
 
 
@@ -190,21 +198,20 @@ public class GameState extends State {
     public void collide() {
 
         for(int i = 0;i<treeArray.size;i++) {
-            if (treeArray.get(i).getBounds().contains(grass.getBounds())){
-                System.out.println("but i love emilia");
+//            if (treeArray.get(i).getBounds().contains(grass.getBounds())){
 
+//            }
 
+//            else if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
 
-            }else if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
-                System.out.println("remilia");
-            }
-        }
+//            }
+//        }
 //        if(grass.getBounds().overlaps(grasshopper.getBounds())){
-//            System.out.println("who's rem");
+
 //        }
 //        if (grass.getBounds().overlaps(house.getBounds())){
-//            System.out.println("testing house");
-//        }
+
+        }
 
 
 
@@ -250,8 +257,7 @@ public class GameState extends State {
     public void dispose() {
         batch.dispose();
         shapeRenderer.dispose();
-        musicDeath.dispose();
-        //sun.dispose();
+        sound.dispose();
         grass.dispose();
     }
 

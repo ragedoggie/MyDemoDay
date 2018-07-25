@@ -24,7 +24,7 @@ import com.misisonbit.Sprites.Animations;
         position = new Vector3(x, y, 0);
         texture = new Texture("Rabbit.png");
         bounds = new Rectangle(x, y, texture.getWidth() / 3, texture.getHeight() / 3);
-        rabbitAnim = new Animations(new TextureRegion(texture), 2, .3f,2,2);
+        rabbitAnim = new Animations(new TextureRegion(texture), 4, .5f,2,2);
 
         //ray = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
 

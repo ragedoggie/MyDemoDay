@@ -1,6 +1,8 @@
 package com.misisonbit.Character;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -24,6 +26,7 @@ public class Grass extends Organisms {
     Animations grassAnim3;
     //Texture sprite;
     Sprite grassSprite;
+    Sound levelUp;
 
     Texture texture;
     Texture texture2; //hopper
@@ -40,10 +43,12 @@ public class Grass extends Organisms {
         texture2 = new Texture("grasshopper2.png");
         texture3 = new Texture("Rabbit.png");
         grassSprite = new Sprite(texture);
+        levelUp = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/chipquest.wav"));
+
 
         grassAnim = new Animations(new TextureRegion(texture), 3, 0.8f,2,2);
         grassAnim2 = new Animations(new TextureRegion(texture2), 3, 0.5f,3,1);
-        grassAnim3 = new Animations(new TextureRegion(texture3), 2, .3f,2,2);
+        grassAnim3 = new Animations(new TextureRegion(texture3), 4, 0.5f,2,2);
 
 
         //bounds = new Rectangle(x, y, grassAnim.getFrame().getRegionWidth(), grassAnim.getFrame().getRegionHeight());
@@ -72,18 +77,18 @@ public class Grass extends Organisms {
 
         //bounds.setPosition(position.x, position.y);
 
-        if(LVpoints<2){
+        if(LVpoints == 0){
             grassSprite.setTexture(texture);
             currentAnim = grassAnim;
             grassAnim.update(dt);
 
-        }else if(LVpoints>2 && LVpoints<4){
+        }else if(LVpoints == 3){
             grassSprite.setTexture(texture2);
             currentAnim = grassAnim2;
             grassAnim2.update(dt);
 
 
-        }else if(LVpoints>4 && LVpoints<6){
+        }else if(LVpoints == 5){
             grassSprite.setTexture(texture3);
             currentAnim = grassAnim3;
             grassAnim3.update(dt);

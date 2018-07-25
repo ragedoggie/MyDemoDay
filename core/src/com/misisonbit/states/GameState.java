@@ -15,7 +15,6 @@ import com.misisonbit.Character.Grass;
 import com.misisonbit.Character.Grasshopper;
 import com.misisonbit.Character.House;
 import com.misisonbit.Character.Organisms;
-import com.misisonbit.Character.Rabbit;
 import com.misisonbit.Character.Sun;
 import com.misisonbit.Character.Tree;
 import com.misisonbit.MyGdxGame;
@@ -27,18 +26,24 @@ import java.util.Random;
 
 public class GameState extends State {
     ParticleEffect effect;
-    Sound sound;
+    Sound musicDeath;
+    Sound levelUp;
     Grass grass;
+    //Sun sun;
     Controller controller;
     Organisms organisms;
+    //Tree tree;
+    Music music;
     Array<Tree> treeArray;
+
     Array <Sun> sunArray;
     Random random;
+
     Grasshopper grasshopper;
     House house;
-    Rabbit rabbit;
+
     ShapeRenderer shapeRenderer;
-    Music music;
+
     public static int LVpoints = 0;
 
     public void create() {
@@ -83,7 +88,8 @@ public class GameState extends State {
         controller = new Controller();
         organisms = new Organisms(0f,0f);
 
-        sound = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/crunch.mp3" ));
+        musicDeath = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/crunch.mp3" ));
+        levelUp = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/chipquest.wav" ));
 
         shapeRenderer = new ShapeRenderer();
 
@@ -109,6 +115,7 @@ public class GameState extends State {
 
         for (int i = 0; i < sunArray.size; i++) {
                 batch.draw(sunArray.get(i).getTexture(), sunArray.get(i).getPosition().x, sunArray.get(i).getPosition().y);
+
         }
 
 
@@ -176,10 +183,16 @@ public class GameState extends State {
 
         for (int i = 0; i < sunArray.size; i++) {
             sunArray.get(i).update(dt);
+
             if (grass.getBounds().overlaps(sunArray.get(i).getBounds())) {
                 sunArray.removeValue(sunArray.get(i), true);
+                effect.setPosition(grass.getPosition().x, grass.getPosition().y);
+                effect.start();
 
                 LVpoints++;
+                if(LVpoints == 3 || LVpoints == 5){
+                    levelUp.play(0.5f);
+                }
                 System.out.println(LVpoints);
 
 //                if(LVpoints >= 2){
@@ -187,7 +200,7 @@ public class GameState extends State {
 //                }
 
 
-                sound.play();
+                musicDeath.play();
             }
 
 
@@ -198,20 +211,21 @@ public class GameState extends State {
     public void collide() {
 
         for(int i = 0;i<treeArray.size;i++) {
-//            if (treeArray.get(i).getBounds().contains(grass.getBounds())){
+            if (treeArray.get(i).getBounds().contains(grass.getBounds())){
+                System.out.println("but i love emilia");
 
-//            }
 
-//            else if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
 
-//            }
-//        }
+            }else if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
+                System.out.println("remilia");
+            }
+        }
 //        if(grass.getBounds().overlaps(grasshopper.getBounds())){
-
+//            System.out.println("who's rem");
 //        }
 //        if (grass.getBounds().overlaps(house.getBounds())){
-
-        }
+//            System.out.println("testing house");
+//        }
 
 
 
@@ -257,7 +271,9 @@ public class GameState extends State {
     public void dispose() {
         batch.dispose();
         shapeRenderer.dispose();
-        sound.dispose();
+        musicDeath.dispose();
+        levelUp.dispose();
+        //sun.dispose();
         grass.dispose();
     }
 

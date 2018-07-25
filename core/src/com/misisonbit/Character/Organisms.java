@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.misisonbit.MyGdxGame;
+import com.misisonbit.Sprites.Animations;
 
 public class Organisms {
     int speed;
@@ -19,6 +20,7 @@ public class Organisms {
     ShapeRenderer bounds;
     //Rectangle bounds;
     Vector2 offset;
+    Animations currentAnim;
    // public static boolean upPressed, downPressed, leftPressed, rightPressed = false;
 
 

@@ -28,7 +28,7 @@ public class Grasshopper extends Organisms{
     Texture texture2;
 
     Vector2 target;
-    Random rng;
+ //   Random rng;
 
     Organisms player;
 
@@ -44,16 +44,16 @@ public class Grasshopper extends Organisms{
         bounds = new Rectangle(position.x, position.y, grasshopperAnim.getFrame().getRegionWidth(), grasshopperAnim.getFrame().getRegionHeight());
         range = new Circle(position.x+bounds.getWidth()/2,position.y+bounds.getHeight()/2,100);
 
-        rng = new Random();
+    //    rng = new Random();
 
-        target = new Vector2(rng.nextInt(Gdx.graphics.getWidth()),rng.nextInt(Gdx.graphics.getHeight()));
+    //    target = new Vector2(rng.nextInt(Gdx.graphics.getWidth()),rng.nextInt(Gdx.graphics.getHeight()));
 
 
     }
 
     public void update(float dt){
         grasshopperAnim.update(dt);
-        moveBoi();
+        //moveBoi();
 
 
     }
@@ -70,27 +70,27 @@ public class Grasshopper extends Organisms{
         return bounds;
     }
 
-    public void moveBoi(){
+//    public void moveBoi(){
 
-        if(!range.contains(player.getPosition())) {
-            if (bounds.contains(target)) {
-                target.set(rng.nextInt(Gdx.graphics.getWidth()), rng.nextInt(Gdx.graphics.getHeight()));
-            } else {
-                if (position.x < target.x) {
-                    position.x += 1.2;
-                } else {
-                    position.x -= 1.2;
-                }
-
-                if (position.y < target.y) {
-                    position.y += 1.2;
-                } else {
-                    position.x -= 1.2;
-                }
-            }
-        }
-
-    }
+//        if(!range.contains(player.getPosition())) {
+//            if (bounds.contains(target)) {
+//                target.set(rng.nextInt(Gdx.graphics.getWidth()), rng.nextInt(Gdx.graphics.getHeight()));
+//            } else {
+//                if (position.x < target.x) {
+//                    position.x += 1.2;
+//                } else {
+//                    position.x -= 1.2;
+//                }
+//
+//                if (position.y < target.y) {
+//                    position.y += 1.2;
+//                } else {
+//                    position.x -= 1.2;
+//                }
+//            }
+//        }
+//
+//    }
 
 
     public Circle getRange() {

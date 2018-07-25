@@ -42,6 +42,8 @@ public class GameState extends State {
 
     ShapeRenderer shapeRenderer;
 
+    Vector2 target;
+
     public static int LVpoints = 0;
     public static int trophicLevel;
 
@@ -65,7 +67,7 @@ public class GameState extends State {
 
         sunArray = new Array<Sun>();
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 30; i++) {
             int x = random.nextInt(MyGdxGame.width);
             int y = random.nextInt(MyGdxGame.height);
             Sun s = new Sun(x,y);
@@ -89,6 +91,8 @@ public class GameState extends State {
         shapeRenderer = new ShapeRenderer();
 
 
+        target = new Vector2();
+        target.set(random.nextInt(Gdx.graphics.getWidth()),random.nextInt(Gdx.graphics.getHeight()));
 
 
     }
@@ -195,6 +199,8 @@ public class GameState extends State {
 //                if(LVpoints >= 2){
 //
 //                }
+
+
                 musicDeath.play();
 
 
@@ -207,13 +213,12 @@ public class GameState extends State {
 
     public void collide() {
 
-        for(int i = 0;i<treeArray.size;i++) {
-            if (treeArray.get(i).getBounds().contains(grass.getBounds())){
+        for (int i = 0; i < treeArray.size; i++) {
+            if (treeArray.get(i).getBounds().contains(grass.getBounds())) {
                 System.out.println("but i love emilia");
 
 
-
-            }else if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
+            } else if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
                 System.out.println("remilia");
             }
         }
@@ -225,31 +230,27 @@ public class GameState extends State {
 //        }
 
 
-
-
         //---------notice the grasshopper----------
 
 
-
-
-
 //not go out of screen kinda
-        if(grasshopper.getPosition().x >= Gdx.graphics.getWidth()){
-            grasshopper.getPosition().x-=10;
-        }else if(grasshopper.getPosition().x <= 0){
-            grasshopper.getPosition().x+=10;
+        if (grasshopper.getPosition().x >= MyGdxGame.width) {
+            grasshopper.getPosition().x -= 10;
+        } else if (grasshopper.getPosition().x <= 0) {
+            grasshopper.getPosition().x += 10;
 
         }
 
-        if(grasshopper.getPosition().y >= Gdx.graphics.getHeight()){
-
-        }else if(grasshopper.getPosition().y <= 0){
+        if (grasshopper.getPosition().y >= MyGdxGame.height) {
+            grasshopper.getPosition().y-=10;
+        } else if (grasshopper.getPosition().y <= 0) {
+            grasshopper.getPosition().y+=10;
 
         }
 
-        if(Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
+        if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
             grasshopper.getBounds().setPosition(grasshopper.getPosition().x, grasshopper.getPosition().y);
-            grasshopper.getRange().setPosition(grasshopper.getPosition().x,grasshopper.getPosition().y);
+            grasshopper.getRange().setPosition(grasshopper.getPosition().x, grasshopper.getPosition().y);
 
 
             switch (trophicLevel) {
@@ -269,22 +270,22 @@ public class GameState extends State {
 
                 case 1:
 
-                    if(random.nextBoolean()==true){
-                        grasshopper.getPosition().x+=1.5;
-                    }else{
-                        grasshopper.getPosition().x-=1.5;
+                    if (random.nextBoolean() == true) {
+                        grasshopper.getPosition().x += 1.5;
+                    } else {
+                        grasshopper.getPosition().x -= 1.5;
                     }
 
-                    if(random.nextBoolean()==true){
-                        grasshopper.getPosition().y+=1.5;
-                    }else{
-                        grasshopper.getPosition().y-=1.5;
+                    if (random.nextBoolean() == true) {
+                        grasshopper.getPosition().y += 1.5;
+                    } else {
+                        grasshopper.getPosition().y -= 1.5;
                     }
 
                     break;
 
                 case 2:
-                    if(grasshopper.getPosition().x<Gdx.graphics.getWidth() && grasshopper.getPosition().x>0) {
+                    if (grasshopper.getPosition().x < MyGdxGame.width && grasshopper.getPosition().x > 0) {
                         if (grasshopper.getPosition().x >= grass.getPosition().x) {
                             grasshopper.getPosition().x += 1.2;
                         } else {
@@ -292,7 +293,7 @@ public class GameState extends State {
                         }
                     }
 
-                    if(grasshopper.getPosition().y<Gdx.graphics.getWidth() && grasshopper.getPosition().y>0) {
+                    if (grasshopper.getPosition().y < MyGdxGame.height && grasshopper.getPosition().y > 0) {
                         if (grasshopper.getPosition().y >= grass.getPosition().y) {
                             grasshopper.getPosition().y += 1.2;
                         } else {
@@ -303,19 +304,29 @@ public class GameState extends State {
                 default:
 
             }
-        }else{
+        } else {
+            grasshopper.getBounds().setPosition(grasshopper.getPosition().x, grasshopper.getPosition().y);
+            grasshopper.getRange().setPosition(grasshopper.getPosition().x, grasshopper.getPosition().y);
+
+            if(!grasshopper.getRange().contains(target)){
+                if(grasshopper.getPosition().x > target.x){
+                    grasshopper.getPosition().x-=1.2;
+                }else{
+                    grasshopper.getPosition().x+=1.2;
+                }
+
+                if(grasshopper.getPosition().y > target.y){
+                    grasshopper.getPosition().y-=1.2;
+                }else{
+                    grasshopper.getPosition().y+=1.2;
+                }
 
 
-
-
+            }else{
+                target.set(random.nextInt(Gdx.graphics.getWidth()),random.nextInt(Gdx.graphics.getHeight()));
+            }
 
         }
-        //import Intersector library
-
-
-
-
-
     }
 
         //if(grass.getBounds().overlaps(sun.getBounds()) && sun.isAlive){

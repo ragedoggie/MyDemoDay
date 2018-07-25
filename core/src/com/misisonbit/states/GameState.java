@@ -135,7 +135,7 @@ public class GameState extends State {
         shapeRenderer.end();
         controller.draw();
 
-//        if(grass.getBounds().x < 0) {
+//        if(grass.getBounds().x < 0) {ls
 //            grass.getPosition().x = 0;
 //        }
 

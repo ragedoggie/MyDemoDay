@@ -1,11 +1,11 @@
 package com.misisonbit.Character;
 
 public class Player {
-    int trophicLevel;
+    //int trophicLevel;
     int score;
 
     public Player() {
-        trophicLevel =  1 ;
+        //trophicLevel =  1 ;
         score = 0;
     }
     private void evo(){

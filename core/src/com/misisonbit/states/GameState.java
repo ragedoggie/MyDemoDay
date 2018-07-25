@@ -8,12 +8,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.math.Intersector;
 import com.misisonbit.Character.Grass;
 import com.misisonbit.Character.Grasshopper;
 import com.misisonbit.Character.House;
 import com.misisonbit.Character.Organisms;
+import com.misisonbit.Character.Rabbit;
 import com.misisonbit.Character.Sun;
 import com.misisonbit.Character.Tree;
 import com.misisonbit.MyGdxGame;
@@ -41,11 +43,16 @@ public class GameState extends State {
     ShapeRenderer shapeRenderer;
 
     public static int LVpoints = 0;
+    public static int trophicLevel;
+
+    Vector2 grassHopperPoint;
 
 
     public GameState(MyGdxGame game) {
         super(game);
         random = new Random();
+
+        grassHopperPoint = new Vector2(random.nextInt(Gdx.graphics.getWidth()),random.nextInt(Gdx.graphics.getWidth()));
 
         treeArray = new Array<Tree>();
         for(int i = 0; i< 5; i++) {
@@ -68,8 +75,11 @@ public class GameState extends State {
         grass = new Grass(300,100);
         //sunArray.add(sun);
         //tree = new Tree(600,100);
-        grasshopper = new Grasshopper(500,50);
+        grasshopper = new Grasshopper(500,50, grass);
         house = new House(800,430);
+
+
+
 
         controller = new Controller();
         organisms = new Organisms(0f,0f);
@@ -106,6 +116,8 @@ public class GameState extends State {
 
         batch.draw(grasshopper.getTexture(),grasshopper.getPosition().x,grasshopper.getPosition().y);
         batch.draw(house.getTexture(),800,430);
+
+
         batch.end();
 
 
@@ -207,22 +219,88 @@ public class GameState extends State {
 
 
 
+        //---------notice the grasshopper----------
+
+
+
+
+
+//not go out of screen kinda
+        if(grasshopper.getPosition().x >= Gdx.graphics.getWidth()){
+            grasshopper.getPosition().x-=10;
+        }else if(grasshopper.getPosition().x <= 0){
+            grasshopper.getPosition().x+=10;
+
+        }
+
+        if(grasshopper.getPosition().y >= Gdx.graphics.getHeight()){
+
+        }else if(grasshopper.getPosition().y <= 0){
+
+        }
 
         if(Intersector.overlaps(grasshopper.getRange(),grass.getBounds())){
             grasshopper.getBounds().setPosition(grasshopper.getPosition().x, grasshopper.getPosition().y);
             grasshopper.getRange().setPosition(grasshopper.getPosition().x,grasshopper.getPosition().y);
 
-            if(grasshopper.getPosition().x>=grass.getPosition().x){
-                grasshopper.getPosition().x-=1.2;
-            }else{
-                grasshopper.getPosition().x+=1.2;
-            }
 
-            if(grasshopper.getPosition().y>=grass.getPosition().y){
-                grasshopper.getPosition().y-=1.2;
-            }else{
-                grasshopper.getPosition().y+=1.2;
+            switch (trophicLevel) {
+                case 0:
+                    if (grasshopper.getPosition().x >= grass.getPosition().x) {
+                        grasshopper.getPosition().x -= 1.2;
+                    } else {
+                        grasshopper.getPosition().x += 1.2;
+                    }
+
+                    if (grasshopper.getPosition().y >= grass.getPosition().y) {
+                        grasshopper.getPosition().y -= 1.2;
+                    } else {
+                        grasshopper.getPosition().y += 1.2;
+                    }
+                    break;
+
+                case 1:
+
+                    if(random.nextBoolean()==true){
+                        grasshopper.getPosition().x+=1.5;
+                    }else{
+                        grasshopper.getPosition().x-=1.5;
+                    }
+
+                    if(random.nextBoolean()==true){
+                        grasshopper.getPosition().y+=1.5;
+                    }else{
+                        grasshopper.getPosition().y-=1.5;
+                    }
+
+                    break;
+
+                case 2:
+                    if(grasshopper.getPosition().x<Gdx.graphics.getWidth() && grasshopper.getPosition().x>0) {
+                        if (grasshopper.getPosition().x >= grass.getPosition().x) {
+                            grasshopper.getPosition().x += 1.2;
+                        } else {
+                            grasshopper.getPosition().x -= 1.2;
+                        }
+                    }
+
+                    if(grasshopper.getPosition().y<Gdx.graphics.getWidth() && grasshopper.getPosition().y>0) {
+                        if (grasshopper.getPosition().y >= grass.getPosition().y) {
+                            grasshopper.getPosition().y += 1.2;
+                        } else {
+                            grasshopper.getPosition().y -= 1.2;
+                        }
+                    }
+                    break;
+                default:
+
             }
+        }else{
+
+
+
+
+
         }
         //import Intersector library
 

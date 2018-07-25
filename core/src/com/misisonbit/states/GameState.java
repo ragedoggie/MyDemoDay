@@ -214,8 +214,8 @@ public class GameState extends State {
 
 
                 LVpoints++;
-                if(LVpoints == 3 || LVpoints == 5){
-                    levelUp.play(0.5f);
+                if(LVpoints == 2 || LVpoints == 8){
+                    levelUp.play(0.3f);
                 }
                 System.out.println(LVpoints);
 

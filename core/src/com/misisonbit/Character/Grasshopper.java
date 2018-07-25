@@ -42,7 +42,7 @@ public class Grasshopper extends Organisms{
         texture = new Texture("grasshopper2.png");
         grasshopperAnim = new Animations(new TextureRegion(texture), 3, 0.5f,3,1);
         bounds = new Rectangle(position.x, position.y, grasshopperAnim.getFrame().getRegionWidth(), grasshopperAnim.getFrame().getRegionHeight());
-        range = new Circle(position.x+bounds.getWidth()/2,position.y+bounds.getHeight()/2,100);
+        range = new Circle(position.x+bounds.getWidth()/2,position.y+bounds.getHeight()/2,150);
 
     //    rng = new Random();
 

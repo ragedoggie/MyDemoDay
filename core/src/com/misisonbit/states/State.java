@@ -47,6 +47,5 @@ public abstract class State implements Screen{
     public void hide() {
     }
     public void dispose() {
-    font.dispose();
     }
 }

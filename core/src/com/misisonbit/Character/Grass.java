@@ -30,7 +30,6 @@ public class Grass extends Organisms {
     Texture texture2; //hopper
     Texture texture3; //rabbit
 
-
     private static boolean upPressed, downPressed, leftPressed, rightPressed = false;
 
 

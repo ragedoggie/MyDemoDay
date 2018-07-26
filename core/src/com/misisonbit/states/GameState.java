@@ -64,9 +64,8 @@ public class GameState extends State {
         super(game);
         random = new Random();
         effect = new ParticleEffect();
-        effect.load(Gdx.files.internal("vsgame_0/Smoke"),Gdx.files.internal("vsgame_0"));
+        effect.load(Gdx.files.internal("vsgame_0/Firework"),Gdx.files.internal("vsgame_0"));
         effect.start();
-        effect.setPosition(460, 240);
 
         grassHopperPoint = new Vector2(random.nextInt(Gdx.graphics.getWidth()),random.nextInt(Gdx.graphics.getWidth()));
 
@@ -91,7 +90,7 @@ public class GameState extends State {
         grass = new Grass(300,100);
         //sunArray.add(sun);
         //tree = new Tree(600,100);
-        grasshopper = new Grasshopper(500,50, grass);
+        grasshopper = new Grasshopper(460,240, grass);
         house = new House(800,430);
 
 

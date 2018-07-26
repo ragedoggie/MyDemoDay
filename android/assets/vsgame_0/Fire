@@ -6,7 +6,7 @@ lowMin: 3000.0
 lowMax: 3000.0
 - Count - 
 min: 0
-max: 100
+max: 200
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
@@ -31,8 +31,10 @@ timelineCount: 3
 timeline0: 0.0
 timeline1: 0.66
 timeline2: 1.0
-- Life Offset -
+independent: false
+- Life Offset - 
 active: false
+independent: false
 - X Offset - 
 active: false
 - Y Offset - 
@@ -105,9 +107,9 @@ active: false
 active: false
 - Tint - 
 colorsCount: 3
-colors0: 0.34509805
-colors1: 0.7294118
-colors2: 1.0
+colors0: 1.0
+colors1: 0.12156863
+colors2: 0.047058824
 timelineCount: 1
 timeline0: 0.0
 - Transparency - 

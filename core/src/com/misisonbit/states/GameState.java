@@ -238,7 +238,7 @@ if(biotic) {
 
 
                 LVpoints++;
-                if(LVpoints == 10 || LVpoints == 20){
+                if(LVpoints == 20 || LVpoints == 40){
                     levelUp.play(0.3f);
                     System.out.println("rem:0");
                 }

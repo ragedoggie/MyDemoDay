@@ -53,6 +53,8 @@ public class GameState extends State {
     Vector2 grassHopperPoint;
     boolean inTree;
 
+    public static boolean Uwin;
+
     //-----------------------show or hide white boxes-----------------------\\  \\-------\\
     boolean debugg = true;                                              //  //       //
 //-----------------------show or hide white boxes-----------------------\\  \\-------\\
@@ -103,6 +105,7 @@ public class GameState extends State {
 
         biotic = true;
 
+        Uwin = false;
 
     }
 
@@ -274,10 +277,17 @@ if(biotic) {
 //
 //        }
 
+//------------house--------------
+        if (grass.getBounds().overlaps(house.getBounds())){
+            System.out.println("testing house");
+            if(LVpoints>=100){
+                Uwin = true;
+                this.dispose();
+                game.setScreen(new GameOverState(game));
+            }else{
 
-//        if (grass.getBounds().overlaps(house.getBounds())){
-//            System.out.println("testing house");
-//        }
+            }
+       }
 
 
         //---------notice the grasshopper----------

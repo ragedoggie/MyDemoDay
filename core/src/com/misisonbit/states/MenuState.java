@@ -16,7 +16,7 @@ public class MenuState extends State {
 
     public MenuState(MyGdxGame game) {
         super(game);
-        screen = new Texture("houseboi.png");
+        screen = new Texture("houseBoi.png");
         grass = new Grass(10, 10);
     }
 

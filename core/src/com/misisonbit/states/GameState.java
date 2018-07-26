@@ -93,7 +93,7 @@ public class GameState extends State {
         sunArray = new Array<Sun>();
 
         //sun num here
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             int x = random.nextInt(MyGdxGame.width);
             int y = random.nextInt(MyGdxGame.height);
             Sun s = new Sun(x, y);
@@ -132,7 +132,7 @@ public class GameState extends State {
     public void drawGame() {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        font.draw(batch, this.getClass().toString(), 0, 10);
+        //font.draw(batch, this.getClass().toString(), 0, 10);
         //point
         font.draw(batch, "Points = "+LVpoints, MyGdxGame.width-75, 10);
 
@@ -311,7 +311,7 @@ if(biotic) {
 //------------house--------------
         if (grass.getBounds().overlaps(house.getBounds())){
             System.out.println("testing house");
-            if(LVpoints>=100){
+            if(LVpoints>=50){
                 Uwin = true;
                 this.dispose();
                 game.setScreen(new GameOverState(game));

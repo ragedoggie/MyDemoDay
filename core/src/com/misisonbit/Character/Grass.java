@@ -72,20 +72,20 @@ public class Grass extends Organisms {
 
         //bounds.setPosition(position.x, position.y);
 
-        if(LVpoints<10){
+        if(LVpoints<20){
             grassSprite.setTexture(texture);
             currentAnim = grassAnim;
             grassAnim.update(dt);
             trophicLevel = 0;
 
-        }else if(LVpoints>=10 && LVpoints<20){
+        }else if(LVpoints>=20 && LVpoints<40){
             grassSprite.setTexture(texture2);
             currentAnim = grassAnim2;
             grassAnim2.update(dt);
             trophicLevel = 1;
 
 
-        }else if(LVpoints>=20){
+        }else if(LVpoints>=40){
             grassSprite.setTexture(texture3);
             currentAnim = grassAnim3;
             grassAnim3.update(dt);

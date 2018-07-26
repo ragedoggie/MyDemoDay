@@ -1,6 +1,7 @@
 package com.misisonbit.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.misisonbit.MyGdxGame;
 
@@ -23,17 +24,19 @@ public class GameOverState extends State{
 
     public void drawGame(){
         if(Uwin == false){
-            font.setColor(0,0,2,8);
+            font.setColor(Color.GOLDENROD);
             batch.begin();
-            font.draw(batch,"Sorry Try Again.\nclick to try again.", Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
-            batch.draw(itsOver, Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
+            font.getData().setScale(5,5);
+            font.draw(batch,"Sorry Try Again.\nclick to try again.", Gdx.graphics.getWidth()/3,Gdx.graphics.getHeight()/2);
+            batch.draw(itsOver, Gdx.graphics.getWidth()/3,Gdx.graphics.getHeight()/2);
 
             batch.end();
         }else{
-            font.setColor(0,0,2,8);
+            font.setColor(Color.GOLDENROD);
             batch.begin();
-            font.draw(batch,"You win.\nclick to play again.", Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
-            batch.draw(win, Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
+            font.getData().setScale(5,5);
+            font.draw(batch,"You win.\nclick to play again.", Gdx.graphics.getWidth()/3,Gdx.graphics.getHeight()/2);
+            batch.draw(win, Gdx.graphics.getWidth()/3,Gdx.graphics.getHeight()/2);
 
             batch.end();
 

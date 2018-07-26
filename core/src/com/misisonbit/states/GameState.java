@@ -62,7 +62,7 @@ public class GameState extends State {
     public static boolean Uwin;
 
     //-----------------------show or hide white boxes-----------------------\\  \\-------\\
-    boolean debugg = true;                                              //  //       //
+    boolean debugg = false;                                              //  //       //
 //-----------------------show or hide white boxes-----------------------\\  \\-------\\
     public void create() {
         music = Gdx.audio.newMusic(Gdx.files.internal("Forest_Ambience.mp3"));

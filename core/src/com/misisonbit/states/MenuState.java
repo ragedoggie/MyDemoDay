@@ -23,8 +23,8 @@ public class MenuState extends State {
     public void drawGame() {
         batch.begin();
         batch.draw(screen,0,0, 960,540);
-        font.draw(batch,this.getClass().toString(),100,100);
-        font.getData().setScale(2,2);
+       // font.draw(batch,this.getClass().toString(),100,100);
+        font.getData().setScale(5,5);
         font.setColor(Color.GOLDENROD);
         font.draw(batch,"Click to Play",Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         batch.end();

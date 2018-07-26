@@ -61,6 +61,8 @@ public class GameState extends State {
 
     public static boolean Uwin;
 
+    Texture background;
+
     //-----------------------show or hide white boxes-----------------------\\  \\-------\\
     boolean debugg = false;                                              //  //       //
 //-----------------------show or hide white boxes-----------------------\\  \\-------\\
@@ -127,11 +129,14 @@ public class GameState extends State {
         LVpoints = 0;
         trophicLevel = 1;
 
+        background = new Texture("background3.png");
+
     }
 
     public void drawGame() {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+        batch.draw(background,0,0,MyGdxGame.width,MyGdxGame.height);
         //font.draw(batch, this.getClass().toString(), 0, 10);
         //point
         font.draw(batch, "Points = "+LVpoints, MyGdxGame.width-75, 10);
@@ -157,6 +162,8 @@ if(biotic) {
 }
         batch.draw(house.getTexture(), 800, 430);
         //effect.draw(batch);
+
+
 
 
         batch.end();

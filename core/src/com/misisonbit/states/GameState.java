@@ -24,6 +24,7 @@ import com.misisonbit.utils.Controller;
 
 import java.awt.Rectangle;
 import java.util.Random;
+import java.util.Timer;
 
 
 public class GameState extends State {
@@ -56,6 +57,7 @@ public class GameState extends State {
 
     Vector2 grassHopperPoint;
     boolean inTree;
+    boolean respawning;
 
     public static boolean Uwin;
 
@@ -72,10 +74,10 @@ public class GameState extends State {
     public GameState(MyGdxGame game) {
         super(game);
         random = new Random();
-        effect = new ParticleEffect();
+        /*effect = new ParticleEffect();
         effect.load(Gdx.files.internal("vsgame_0/Smoke"),Gdx.files.internal("vsgame_0"));
         effect.start();
-        effect.setPosition(460, 240);
+        effect.setPosition(460, 240);*/
 
         grassHopperPoint = new Vector2(random.nextInt(Gdx.graphics.getWidth()), random.nextInt(Gdx.graphics.getWidth()));
 
@@ -109,7 +111,6 @@ public class GameState extends State {
         organisms = new Organisms(0f, 0f);
 
         musicDeath = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/crunch.mp3"));
-        musicDeath = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/crunch.mp3" ));
         levelUp = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/chipquest.wav" ));
 
         shapeRenderer = new ShapeRenderer();
@@ -120,8 +121,11 @@ public class GameState extends State {
         target.set(random.nextInt(Gdx.graphics.getWidth()), random.nextInt(Gdx.graphics.getHeight()));
 
         biotic = true;
-
         Uwin = false;
+        respawning = false;
+
+        LVpoints = 0;
+        trophicLevel = 1;
 
     }
 
@@ -152,7 +156,7 @@ if(biotic) {
     batch.draw(grasshopper.getTexture(), grasshopper.getPosition().x, grasshopper.getPosition().y);
 }
         batch.draw(house.getTexture(), 800, 430);
-        effect.draw(batch);
+        //effect.draw(batch);
 
 
         batch.end();
@@ -208,7 +212,7 @@ if(biotic) {
 
         grasshopper.update(Gdx.graphics.getDeltaTime());
         house.update(Gdx.graphics.getDeltaTime());
-        effect.update(dt);
+        //effect.update(dt);
 
 
 
@@ -218,8 +222,8 @@ if(biotic) {
 
             if (grass.getBounds().overlaps(sunArray.get(i).getBounds())) {
                 sunArray.removeValue(sunArray.get(i), true);
-                effect.setPosition(grass.getPosition().x, grass.getPosition().y);
-                effect.start();
+                //effect.setPosition(grass.getPosition().x, grass.getPosition().y);
+               // effect.start();
                 int x = random.nextInt(MyGdxGame.width);
                 int y = random.nextInt(MyGdxGame.height);
                 Sun s = new Sun(x, y);
@@ -227,8 +231,9 @@ if(biotic) {
 
 
                 LVpoints++;
-                if(LVpoints == 2 || LVpoints == 8){
+                if(LVpoints == 10 || LVpoints == 20){
                     levelUp.play(0.3f);
+                    System.out.println("rem:0");
                 }
                 System.out.println(LVpoints);
 
@@ -248,7 +253,7 @@ if(biotic) {
 
         }
         collide();
-
+//---------------------eatingBoi----------------------------------
         if(biotic){
         if(grass.getBounds().overlaps(grasshopper.getBounds())) {
             System.out.println("who's rem?");
@@ -264,9 +269,11 @@ if(biotic) {
 
             }
         }
-
-
         }
+
+
+        //undyingBoi();
+
     }
 
     //-----------------------collide begins here-----------------------
@@ -333,13 +340,13 @@ if(biotic) {
 
             }
 
-
+//-----------------hiding----------------
             if (!inTree) {
                 if (Intersector.overlaps(grasshopper.getRange(), grass.getBounds())) {
                     grasshopper.getBounds().setPosition(grasshopper.getPosition().x, grasshopper.getPosition().y);
                     grasshopper.getRange().setPosition(grasshopper.getPosition().x, grasshopper.getPosition().y);
 
-
+//reaction====================================
                     switch (trophicLevel) {
                         case 0:
                             if (grasshopper.getPosition().x >= grass.getPosition().x) {
@@ -436,6 +443,27 @@ if(biotic) {
 
     }
 
+    void undyingBoi(){
+        if(!biotic && !respawning){
+            respawning = true;
+        }
+        if(respawning){
+
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            System.out.println("my brain trembles");
+                            biotic = true;
+                            respawning = false;
+                        }
+                    },
+                    5000
+            );
+
+        }
+    }
+//=--=-=-=-=-=-=-=-=-=-dispose-=-=-=-=-===-=-=-=-=-=-=-=-=-=-=-=-=dispose-=-=-=-=-=-=-=---=-=-===-=-=-=-=-=-=-dispose-=-=-=\\
 
     public void dispose() {
         super.dispose();

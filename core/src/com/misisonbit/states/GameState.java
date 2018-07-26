@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -26,12 +27,15 @@ import java.util.Random;
 
 
 public class GameState extends State {
+    ParticleEffect effect;
     Sound musicDeath;
+    Sound levelUp;
     Grass grass;
     //Sun sun;
     Controller controller;
     Organisms organisms;
     //Tree tree;
+    Music music;
     Array<Tree> treeArray;
 
     Array<Sun> sunArray;
@@ -58,10 +62,20 @@ public class GameState extends State {
     //-----------------------show or hide white boxes-----------------------\\  \\-------\\
     boolean debugg = true;                                              //  //       //
 //-----------------------show or hide white boxes-----------------------\\  \\-------\\
+    public void create() {
+        music = Gdx.audio.newMusic(Gdx.files.internal("Forest_Ambience.mp3"));
+        music.setLooping(true);
+        music.setVolume(1f);
+        music.play();
+    }
 
     public GameState(MyGdxGame game) {
         super(game);
         random = new Random();
+        effect = new ParticleEffect();
+        effect.load(Gdx.files.internal("vsgame_0/Smoke"),Gdx.files.internal("vsgame_0"));
+        effect.start();
+        effect.setPosition(460, 240);
 
         grassHopperPoint = new Vector2(random.nextInt(Gdx.graphics.getWidth()), random.nextInt(Gdx.graphics.getWidth()));
 
@@ -95,6 +109,8 @@ public class GameState extends State {
         organisms = new Organisms(0f, 0f);
 
         musicDeath = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/crunch.mp3"));
+        musicDeath = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/crunch.mp3" ));
+        levelUp = Gdx.audio.newSound(Gdx.files.internal("vsgame_0/chipquest.wav" ));
 
         shapeRenderer = new ShapeRenderer();
 
@@ -136,6 +152,7 @@ if(biotic) {
     batch.draw(grasshopper.getTexture(), grasshopper.getPosition().x, grasshopper.getPosition().y);
 }
         batch.draw(house.getTexture(), 800, 430);
+        effect.draw(batch);
 
 
         batch.end();
@@ -188,17 +205,21 @@ if(biotic) {
             treeArray.get(i).update(dt);
         }
 
+
         grasshopper.update(Gdx.graphics.getDeltaTime());
         house.update(Gdx.graphics.getDeltaTime());
-
+        effect.update(dt);
 
 
 
 
         for (int i = 0; i < sunArray.size; i++) {
             sunArray.get(i).update(dt);
+
             if (grass.getBounds().overlaps(sunArray.get(i).getBounds())) {
                 sunArray.removeValue(sunArray.get(i), true);
+                effect.setPosition(grass.getPosition().x, grass.getPosition().y);
+                effect.start();
                 int x = random.nextInt(MyGdxGame.width);
                 int y = random.nextInt(MyGdxGame.height);
                 Sun s = new Sun(x, y);
@@ -206,6 +227,9 @@ if(biotic) {
 
 
                 LVpoints++;
+                if(LVpoints == 2 || LVpoints == 8){
+                    levelUp.play(0.3f);
+                }
                 System.out.println(LVpoints);
 
                 musicDeath.play();
@@ -423,6 +447,8 @@ if(biotic) {
         for (Tree tree: treeArray) {
             tree.dispose();
         }
+        levelUp.dispose();
+
         grasshopper.dispose();
         grass.dispose();
     }

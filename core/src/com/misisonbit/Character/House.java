@@ -39,4 +39,8 @@ public class House extends Organisms{
 
     }
 
+    public void dispose() {
+        texture.dispose();
+    }
+
 }
